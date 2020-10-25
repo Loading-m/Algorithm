@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			const mergeSort = (arr) => {
+				if (arr.length <= 1) return arr
+				let length = arr.length
+				let mid = (length / 2) | 0
+				let left = mergeSort(arr.slice(0, mid))
+				//bp
+				let right = mergeSort(arr.slice(mid))
+				return mergeHelper(left, right)
+			}
+			const mergeHelper = (leftArr, rightArr) => {
+				let i = 0
+				let j = 0
+				let result = []
+				while (i < leftArr.length && j < rightArr.length) {
+					if (leftArr[i] < rightArr[j]) {
+						result.push(leftArr[i++])
+					} else {
+						result.push(rightArr[j++])
+					}
+				}
+				while (i < leftArr.length) {
+					result.push(leftArr[i++])
+				}
+				while (j < rightArr.length) {
+					result.push(rightArr[j++])
+				}
+				return result
+			}
+			const result = mergeSort([1, 3, 5, 7, 9, 8, 6, 4, 2, 0])
+			console.log(result)
+		</script>
+	</body>
+</html>

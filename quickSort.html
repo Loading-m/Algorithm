@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			function swap(arr, i, j) {
+				;[arr[i], arr[j]] = [arr[j], arr[i]]
+			}
+
+			function quickSort(arr) {
+				if (!arr.length) {
+					return arr
+				}
+				doQuickSort(arr, 0, arr.length - 1)
+				return arr
+			}
+			function doQuickSort(arr, left, right) {
+				// base case:
+				if (left >= right) {
+					return
+				}
+				let pivot = partition(arr, left, right)
+				doQuickSort(arr, 0, pivot - 1)
+				doQuickSort(arr, pivot + 1, right)
+			}
+			function partition(arr, left, right) {
+				let pivotIdx = left + ((Math.random() * (right - left)) | 0) + 1
+				let pivotElement = arr[pivotIdx]
+				//交换pivot和最右边的值
+				swap(arr, right, pivotIdx)
+				let leftBound = left
+				let rightBound = right - 1
+
+				while (leftBound <= rightBound) {
+					if (arr[leftBound] < pivotElement) {
+						leftBound++
+					} else if (arr[rightBound] >= pivotElement) {
+						rightBound--
+					} else {
+						swap(arr, leftBound++, rightBound--)
+					}
+				}
+				// i和 pivot交换
+				swap(arr, leftBound, right)
+				return leftBound
+			}
+			const result = quickSort([1, 2, 8, 3, 4, 9])
+			console.log(result)
+		</script>
+	</body>
+</html>

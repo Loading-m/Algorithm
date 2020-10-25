@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			function a_pow_b(a, b) {
+				//base case: b === 0  a^b = 1
+				if (b === 0) return 1
+				let half_result = a_pow_b(a, (b / 2) | 0)
+				if (b % 2 === 0) {
+					return half_result * half_result
+				} else {
+					return half_result * half_result * a
+				}
+			}
+			console.log(a_pow_b(2, 4))
+		</script>
+	</body>
+</html>
