@@ -209,13 +209,13 @@ function fibo(n) {
 
 > 计算 2 的 1000 次方等于多少
 
-> base case: b === 0 a^b = 1
+> base case: b === 0 a^0 = 1
 
 > recursion rule: F(n) = F(n / 2) \* F(n / 2)
 
 ```typescript
 function a_pow_b(a: number, b: number) {
-	//base case: b === 0  a^b = 1
+	//base case: b === 0  a^0 = 1
 	if (b === 0) return 1
 	let half_result = a_pow_b(a, (b / 2) | 0)
 	if (b % 2 === 0) {
