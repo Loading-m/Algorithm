@@ -272,7 +272,7 @@ function fibo(n) {
 ![fibo](https://github.com/Dreams-d/Algorithm/blob/master/fibo.png)
 
 > tips: 递归会记录每次调用之前的 local variable 的值
-> 例如 fibo 调用前会记录 n 的值
+> 例如 fibo(n - 1) 调用前会记录 n 的值
 > 所以计算 n-2 时才会知道 n 是几
 
 ### <a name="chapter-four-two" id="chapter-four-two"></a>4.2 a 的 b 次方(基础版)
