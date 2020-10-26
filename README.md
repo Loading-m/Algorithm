@@ -61,7 +61,7 @@ let arr = [2, 1, 4, 5, 8, 9, 10, 3, 4, 6]
 mergeSort(arr)
 ```
 
-<img src='./mergeSort.png'/>
+![mergeSort](https://github.com/Dreams-d/Algorithm/blob/master/mergeSort.png)
 
 > 时间复杂度: 每一次切一半 第一层 O(1) 第二层 O(2) 第三层 O(4)....最后一层 O(n)
 > 合并时每一层都是 o(n) 有 logn 层 所以最终复杂度为 O(nlogn)
@@ -199,7 +199,7 @@ function fibo(n) {
 
 > 空间复杂度： O(n) => calc method: how many call stacks level
 
-> <img src="fibo.png">
+![fibo](https://github.com/Dreams-d/Algorithm/blob/master/fibo.png)
 
 > tips: 递归会记录每次调用之前的 local variable 的值
 > 例如 fibo 调用前会记录 n 的值
@@ -226,7 +226,7 @@ function a_pow_b(a: number, b: number) {
 }
 ```
 
-<img src="./a_pow_b.png">
+![a_pow_b](https://github.com/Dreams-d/Algorithm/blob/master/a_pow_b.png)
 
 > 时间复杂度： O(logb)
 
@@ -343,3 +343,7 @@ console.log(number)
 ```
 
 ### 寻找最左边的 target 的值
+
+...coding
+
+## 未完待续
