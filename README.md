@@ -10,7 +10,7 @@
 | &emsp;[2.2 学习攻略](#chapter-two-two)                                                       |
 | &emsp;[2.3 关于 issue](#chapter-two-three)                                                   |
 | <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 排序算法](#chapter-three) |
-| &emsp;[3.1 选择排序](#chapter-three-one)                                                   |
+| &emsp;[3.1 选择排序](#chapter-three-one)                                                     |
 | &emsp;[3.2 归并排序](#chapter-three-two)                                                     |
 | &emsp;[3.3 快速排序](#chapter-three-three)                                                   |
 | &emsp;[3.4 RainbowSort](#chapter-three-four)                                                 |
@@ -18,11 +18,12 @@
 | &emsp;[4.1 斐波那契数列](#chapter-four-one)                                                  |
 | &emsp;[4.2 a 的 b 次方(基础版)](#chapter-four-two)                                           |
 | <a name="catalog-chapter-five" id="catalog-chapter-five"></a>[五 二分查找法](#chapter-five)  |
-| &emsp;[5.1 寻找目标数字在 sorted array 中](#chapter-five-one)                                |
+| &emsp;[5.1 寻找目标数字在排序数组中的索引](#chapter-five-one)                                |
 | &emsp;[5.2 二维数组里是否存在某个数字](#chapter-five-two)                                    |
-| &emsp;[5.3 寻找最接近 target 的值](#chapter-five-three)                                      |
-| &emsp;[5.4 寻找最左边的 target 的值](#chapter-five-four)                                     |
-| <a name="catalog-chapter-six" id="catalog-chapter-six"></a>[六 未完待续](#chapter-six)       |
+| &emsp;[5.3 寻找最接近 target 的值的索引](#chapter-five-three)                                |
+| &emsp;[5.4 寻找最左边的 target 的值的索引](#chapter-five-four)                               |
+| &emsp;[5.5 寻找最右边的 target 值的索引](#chapter-five-five)                                 |
+| &emsp;[5.6 寻找最接近 target 的 7 个数字](#chapter-five-six)                                 |
 
 <!-- 目录结束 -->
 
@@ -30,7 +31,7 @@
 
 > [返回目录](#chapter-one)
 
-很多小伙伴对数据结构与算法有说不出来的畏惧感, 每当谈起它时总觉得很高深莫测, 其实一般就我们探讨的数据结构算法不需要高人一等的智商(一般人就可以学), 只是需要辅以一些小 trick 和一(亿)点点的练习就可以处于进步状态.., 故本人开了本仓库, 后面会不定期更新 README.md, 和大家一起学习这个带有神秘面纱的"新事物"
+很多小伙伴对数据结构与算法有说不出来的畏惧感, 每当谈起时都闻声色变~, 其实一般就我们探讨的数据结构算法不需要高人一等的智商, 只是需要辅以一些小 trick 和一(亿)点点的练习就可以进步..., 故本人开了本仓库, 后面会持续更新 README.md, 和大家一起学习这个带有神秘面纱的"新事物"
 
 ### <a name="chapter-two-one" id="chapter-two-one"></a>2.1 语言说明
 
@@ -130,10 +131,6 @@ mergeSort(arr)
 
 > 空间复杂度: 等比数列：n/2 + n/4 + n/8 + 1 = O(n)
 
-> 空间复杂度计算方式： call stack 一共有多少层， 每一层里耗费了多少空间 所有进行累加就得到了空间复杂度
-
-> 时间复杂度计算方式： 每一层花费的时间，总共多少层 相乘的结果
-
 ### <a name="chapter-three-three" id="chapter-three-three"></a>3.3 快速排序
 
 > [返回目录](#chapter-one)
@@ -200,7 +197,7 @@ console.log(result)
 
 性质：
 
-> 物理意义： 三个挡板四个区域
+> 物理意义： 三个挡板四个区域 （相应的如果题目中的字母类型更多那只需要加挡板划区间就可以了 一通百通）
 
 > i = 0 i 的左侧(不包含 i) 是全是 a
 
@@ -236,6 +233,10 @@ console.log(result)
 ## <a name="chapter-four" id="chapter-four"></a>四 recursion I
 
 > [返回目录](#chapter-one)
+
+> recursion 空间复杂度计算方式： call stack 一共有多少层， 每一层里耗费了多少空间 所有加和就得到了空间复杂度
+
+> recursion 时间复杂度计算方式： 每一层的节点个数，每一层每一层相加的结果
 
 概念：
 
@@ -309,7 +310,7 @@ function a_pow_b(a: number, b: number) {
 
 > [返回目录](#chapter-one)
 
-### <a name="chapter-five-one" id="chapter-five-one"></a>5.1 寻找目标数字在 sorted array 中
+### <a name="chapter-five-one" id="chapter-five-one"></a>5.1 寻找目标数字在排序数组中的索引
 
 > [返回目录](#chapter-one)
 
@@ -391,7 +392,7 @@ const index = findMatrix(
 console.log(index)
 ```
 
-### <a name="chapter-five-three" id="chapter-five-three"></a>5.3 寻找最接近 target 的值
+### <a name="chapter-five-three" id="chapter-five-three"></a>5.3 寻找最接近 target 的值的索引
 
 > [返回目录](#chapter-one)
 
@@ -423,12 +424,130 @@ const number = binarySearchCloset([1, 3, 4, 7, 9], 5)
 console.log(number)
 ```
 
-### <a name="chapter-five-four" id="chapter-five-four"></a>5.4 寻找最左边的 target 的值
+### <a name="chapter-five-four" id="chapter-five-four"></a>5.4 寻找最左边的 target 的值的索引
 
 > [返回目录](#chapter-one)
 
-...coding
+```typescript
+const binarySearchLeft = (arr: number[], target: number) => {
+	let left = 0,
+		right = arr.length - 1
+	//如果左不相邻右就持续while
+	// (left === right - 1) 这是相邻的条件 相邻就停止
+	while (left < right - 1) {
+		let mid = (left + (right - left) / 2) | 0
+		if (arr[mid] > target) {
+			right = mid
+		} else if (arr[mid] < target) {
+			left = mid
+		} else {
+			right = mid //arr[mid] === target = true 找到了target值但不要停下来， 还需要持续检查左边是否还有target 因为题意是要找最左侧的target值
+		}
+	}
+	// 后续处理
+	// 因为是要找最左边的target 所以先检查左边界
+	if (arr[left] === target) {
+		return left
+	} else {
+		return right
+	}
+	return -1
+}
+const number = binarySearchLeft([1, 4, 5, 5, 5, 7, 9], 5)
+console.log(number)
+```
 
-## <a name="chapter-six" id="chapter-six"></a>六 未完待续
+### <a name="chapter-five-five" id="chapter-five-five"></a>5.5 寻找最右边的 target 值的索引
 
 > [返回目录](#chapter-one)
+
+自己先做一遍， 检查下上面的题是否做到了真正理解！
+
+```typescript
+const binarySearchRight = (arr: number[], target: number) => {
+	let left = 0,
+		right = arr.length - 1
+	//如果左不相邻右就持续while
+	// (left === right - 1) 这是相邻的条件 相邻就停止
+	while (left < right - 1) {
+		let mid = (left + (right - left) / 2) | 0
+		if (arr[mid] > target) {
+			right = mid
+		} else if (arr[mid] < target) {
+			left = mid
+		} else {
+			left = mid //arr[mid] === target = true 找到了target值但不要停下来， 还需要持续检查右边是否还有target 因为题意是要找最右侧的target值
+		}
+	}
+	// 后续处理
+	// 因为是要找最右边的target 所以先检查右边界
+	if (arr[right] === target) {
+		return right
+	} else {
+		return left
+	}
+	return -1
+}
+const number = binarySearchRight([1, 4, 5, 5, 5, 7, 9], 5)
+console.log(number)
+```
+
+> [返回目录](#chapter-one)
+
+### <a name="chapter-five-six" id="chapter-five-six"></a>5.6 寻找最接近 target 的 7 个数字
+
+> [返回目录](#chapter-one)
+
+> 思路： 按照上面的套路， 肯定是先找到最接近 target 的那个数字的索引， 然后双指针往两边扩散， 哪个数字更接近 target 就 push 到结果数组中
+
+```typescript
+const findKthCloset = (arr: number[], target: number, k: number) => {
+	//沿用上面的模板, 找到最接近的那个值
+	let left = 0,
+		right = arr.length - 1
+	while (left < right - 1) {
+		let mid = (left + (right - left) / 2) | 0
+		if (arr[mid] > target) {
+			right = mid
+		} else if (arr[mid] < target) {
+			left = mid
+		} else {
+			return mid
+		}
+	}
+	let closetIdx = 0 //找到最接近的第一个数字 要么是左 要么是右 存储它的索引
+	// 后续处理
+	if (Math.abs(arr[left] - target) <= Math.abs(arr[right] - target)) {
+		closetIdx = left
+	} else {
+		closetIdx = right
+	}
+	let result = [] //需要返回的结果数组
+	let l = closetIdx //左边界
+	let r = closetIdx + 1 //右边界
+	//找K个数
+	for (let i = 0; i < k; i++) {
+		//如果右边界已经没有元素，则让左边的一个元素进来
+		if (r >= arr.length) {
+			result.push(arr[l--])
+		} else if (l < 0) {
+			//如果左边界没有元素，则让右边的一个元素进来
+			result.push(arr[r++])
+		} else if (Math.abs(arr[l] - target) <= Math.abs(arr[r] - target)) {
+			// 如果都有元素就看谁更接近
+			result.push(arr[l--])
+		} else {
+			result.push(arr[r++])
+		}
+	}
+	return result
+}
+const result = findKthCloset([1, 4, 5, 7, 8, 9, 11], 5, 3)
+console.log(result)
+```
+
+> 时间复杂度: O(logn + k)
+
+## Stack & Queue
+
+## 更新...
