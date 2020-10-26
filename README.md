@@ -261,13 +261,14 @@ console.log(result)
 function fibo(n) {
 	if (n === 0) return 0
 	if (n === 1) return 1
+	// 需要注意: 这里的fibo(n - 1) + fibo(n - 2)并不是同时计算的,而是fibo(n - 1)直下的执行到底,直到遇到base case往上反弹时才会调用fibo(n - 2),之后把结果return到上一层去
 	return fibo(n - 1) + fibo(n - 2)
 }
 ```
 
 > 时间复杂度: 1 + 2 + 4 + 8 + 2^(n -1) = O(2^n)
 
-> 空间复杂度： O(n) => calc method: how many call stacks level
+> 空间复杂度： O(n) => calc method: how many push call stacks
 
 ![fibo](https://github.com/Dreams-d/Algorithm/blob/master/fibo.png)
 
