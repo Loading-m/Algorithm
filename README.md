@@ -10,7 +10,7 @@
 | &emsp;[2.2 学习攻略](#chapter-two-two)                                                       |
 | &emsp;[2.3 关于 issue](#chapter-two-three)                                                   |
 | <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 排序算法](#chapter-three) |
-| &emsp;[3.1 1.选择排序](#chapter-three-one)                                                   |
+| &emsp;[3.1 选择排序](#chapter-three-one)                                                   |
 | &emsp;[3.2 归并排序](#chapter-three-two)                                                     |
 | &emsp;[3.3 快速排序](#chapter-three-three)                                                   |
 | &emsp;[3.4 RainbowSort](#chapter-three-four)                                                 |
@@ -58,7 +58,7 @@
 
 > [返回目录](#chapter-one)
 
-### <a name="chapter-three-one" id="chapter-three-one"></a>3.1 1.选择排序
+### <a name="chapter-three-one" id="chapter-three-one"></a>3.1 选择排序
 
 > [返回目录](#chapter-one)
 
@@ -348,7 +348,7 @@ console.log(index)
 ```
 matrix:   1  2  3  4
 
-		  5  6  7  8
+          5  6  7  8
 
           9 10 11 12
 
