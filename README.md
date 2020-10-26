@@ -1,12 +1,48 @@
-## 前言
+<!-- 目录开始 -->
 
-#### 很多小伙伴对数据结构与算法有说不出来的畏惧感, 每当谈起它时总觉得很高深莫测, 其实一般就我们探讨的数据结构算法不需要高人一等的智商(一般人就可以学), 只是需要辅以一些小 trick 和一(亿)点点的练习就可以处于进步状态.., 故本人开了本仓库, 后面会不定期更新 README.md, 和大家一起学习这个带有神秘面纱的"新事物"
+## <a name="chapter-one" id="chapter-one"></a>一 目录
 
-### 语言说明
+**不折腾的前端，和咸鱼有什么区别**
+
+| 目录                                                                                         |
+| -------------------------------------------------------------------------------------------- |
+| [一 目录](#chapter-one)                                                                      |
+| <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two)           |
+| &emsp;[2.1 语言说明](#chapter-two-one)                                                       |
+| &emsp;[2.2 学习攻略](#chapter-two-two)                                                       |
+| &emsp;[2.3 关于 issue](#chapter-two-three)                                                   |
+| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 排序算法](#chapter-three) |
+| &emsp;[3.1 1.选择排序](#chapter-three-one)                                                   |
+| &emsp;[3.2 归并排序](#chapter-three-two)                                                     |
+| &emsp;[3.3 快速排序](#chapter-three-three)                                                   |
+| &emsp;[3.4 RainbowSort](#chapter-three-four)                                                 |
+| <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 recursion I](#chapter-four) |
+| &emsp;[4.1 斐波那契数列](#chapter-four-one)                                                  |
+| &emsp;[4.2 a 的 b 次方(基础版)](#chapter-four-two)                                           |
+| <a name="catalog-chapter-five" id="catalog-chapter-five"></a>[五 二分查找法](#chapter-five)  |
+| &emsp;[5.1 寻找目标数字在 sorted array 中](#chapter-five-one)                                |
+| &emsp;[5.2 二维数组里是否存在某个数字](#chapter-five-two)                                    |
+| &emsp;[5.3 寻找最接近 target 的值](#chapter-five-three)                                      |
+| &emsp;[5.4 寻找最左边的 target 的值](#chapter-five-four)                                     |
+| <a name="catalog-chapter-six" id="catalog-chapter-six"></a>[六 未完待续](#chapter-six)       |
+
+<!-- 目录结束 -->
+
+## <a name="chapter-two" id="chapter-two"></a>二 前言
+
+> [返回目录](#chapter-one)
+
+很多小伙伴对数据结构与算法有说不出来的畏惧感, 每当谈起它时总觉得很高深莫测, 其实一般就我们探讨的数据结构算法不需要高人一等的智商(一般人就可以学), 只是需要辅以一些小 trick 和一(亿)点点的练习就可以处于进步状态.., 故本人开了本仓库, 后面会不定期更新 README.md, 和大家一起学习这个带有神秘面纱的"新事物"
+
+### <a name="chapter-two-one" id="chapter-two-one"></a>2.1 语言说明
+
+> [返回目录](#chapter-one)
 
 1. 本项目均采用 javascript 进行代码编写 + typescript 类型声明(再也不用担心参数类型的问题啦~)
 
-### 学习攻略
+### <a name="chapter-two-two" id="chapter-two-two"></a>2.2 学习攻略
+
+> [返回目录](#chapter-one)
 
 1. 本项目代码中有注释的地方都是需要好好理解的部分(也是很多同鞋学习了很久都难以掌握的一些 corner case...), 只要结合注释认真理解后相信你会豁然开朗
 
@@ -14,13 +50,19 @@
 
 3. 最后再辅以代码和执行图 **相对较难理解的将会有图片辅助理解** 进行理解 + 练习(coding)
 
-### 关于 issue
+### <a name="chapter-two-three" id="chapter-two-three"></a>2.3 关于 issue
+
+> [返回目录](#chapter-one)
 
 对代码的实现有更优解(时间复杂度或空间复杂度更优) 可以根据分类 + 题名提交 issue 共同探讨
 
-## 排序算法
+## <a name="chapter-three" id="chapter-three"></a>三 排序算法
 
-### 1.选择排序
+> [返回目录](#chapter-one)
+
+### <a name="chapter-three-one" id="chapter-three-one"></a>3.1 1.选择排序
+
+> [返回目录](#chapter-one)
 
 ```typescript
 const selectSort = (unSortedArr: number[]) => {
@@ -45,7 +87,9 @@ selectSort([2, 1, 4, 5])
 
 > 空间复杂度: O(1)
 
-### 归并排序
+### <a name="chapter-three-two" id="chapter-three-two"></a>3.2 归并排序
+
+> [返回目录](#chapter-one)
 
 ```typescript
 const mergeSort = (arr: number[]) => {
@@ -92,7 +136,9 @@ mergeSort(arr)
 
 > 时间复杂度计算方式： 每一层花费的时间，总共多少层 相乘的结果
 
-### 快速排序
+### <a name="chapter-three-three" id="chapter-three-three"></a>3.3 快速排序
+
+> [返回目录](#chapter-one)
 
 性质：两个挡板三个区域
 
@@ -148,7 +194,9 @@ const result = quickSort([1, 2, 8, 3, 4, 9])
 console.log(result)
 ```
 
-### RainbowSort
+### <a name="chapter-three-four" id="chapter-three-four"></a>3.4 RainbowSort
+
+> [返回目录](#chapter-one)
 
 > 将 abccbba 排序为： aabbbcc
 
@@ -187,7 +235,9 @@ const result = rainbowSort(['a', 'b', 'c', 'c', 'b', 'b', 'a'])
 console.log(result)
 ```
 
-## recursion I
+## <a name="chapter-four" id="chapter-four"></a>四 recursion I
+
+> [返回目录](#chapter-one)
 
 概念：
 
@@ -201,7 +251,9 @@ console.log(result)
 
 > 2.recursive rule: 用同样的规则处理更小号的问题
 
-### 斐波那契数列
+### <a name="chapter-four-one" id="chapter-four-one"></a>4.1 斐波那契数列
+
+> [返回目录](#chapter-one)
 
 > base case: F(0) = 0 F(1) = 1
 
@@ -225,7 +277,9 @@ function fibo(n) {
 > 例如 fibo 调用前会记录 n 的值
 > 所以计算 n-2 时才会知道 n 是几
 
-### a 的 b 次方(基础版)
+### <a name="chapter-four-two" id="chapter-four-two"></a>4.2 a 的 b 次方(基础版)
+
+> [返回目录](#chapter-one)
 
 > 计算 2 的 1000 次方等于多少
 
@@ -252,9 +306,13 @@ function a_pow_b(a: number, b: number) {
 
 > 空间复杂度： O(logb)
 
-## 二分查找法
+## <a name="chapter-five" id="chapter-five"></a>五 二分查找法
 
-### 寻找目标数字在 sorted array 中
+> [返回目录](#chapter-one)
+
+### <a name="chapter-five-one" id="chapter-five-one"></a>5.1 寻找目标数字在 sorted array 中
+
+> [返回目录](#chapter-one)
 
 > 使用左闭右闭区间法 [l, r]
 
@@ -283,7 +341,9 @@ console.log(index)
 
 > 空间复杂度: O(1)
 
-### 二维数组里是否存在某个数字
+### <a name="chapter-five-two" id="chapter-five-two"></a>5.2 二维数组里是否存在某个数字
+
+> [返回目录](#chapter-one)
 
 > 思路：把二维的数组映射为一维的
 
@@ -332,7 +392,9 @@ const index = findMatrix(
 console.log(index)
 ```
 
-### 寻找最接近 target 的值
+### <a name="chapter-five-three" id="chapter-five-three"></a>5.3 寻找最接近 target 的值
+
+> [返回目录](#chapter-one)
 
 ```typescript
 const binarySearchCloset = (arr: number[], target: number) => {
@@ -362,8 +424,12 @@ const number = binarySearchCloset([1, 3, 4, 7, 9], 5)
 console.log(number)
 ```
 
-### 寻找最左边的 target 的值
+### <a name="chapter-five-four" id="chapter-five-four"></a>5.4 寻找最左边的 target 的值
+
+> [返回目录](#chapter-one)
 
 ...coding
 
-## 未完待续
+## <a name="chapter-six" id="chapter-six"></a>六 未完待续
+
+> [返回目录](#chapter-one)
