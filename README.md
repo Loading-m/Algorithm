@@ -62,7 +62,9 @@
 ### <a name="chapter-three-one" id="chapter-three-one"></a>3.1 选择排序
 
 > [返回目录](#chapter-one)
+
 > javascript: 
+
 ```typescript
 const selectSort = (unSortedArr: number[]) => {
 	for (let i = 0; i < unSortedArr.length - 1; i++) {
@@ -81,6 +83,7 @@ const selectSort = (unSortedArr: number[]) => {
 //call:
 selectSort([2, 1, 4, 5])
 ```
+
 > java: 
 
 ```java
