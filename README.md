@@ -37,7 +37,7 @@
 
 > [返回目录](#chapter-one)
 
-1. 本项目均采用 javascript 进行代码编写 + typescript 类型声明(再也不用担心参数类型的问题啦~)
+1. 本项目均采用 javascript + java 进行代码编写
 
 ### <a name="chapter-two-two" id="chapter-two-two"></a>2.2 学习攻略
 
@@ -62,7 +62,7 @@
 ### <a name="chapter-three-one" id="chapter-three-one"></a>3.1 选择排序
 
 > [返回目录](#chapter-one)
-
+> javascript: 
 ```typescript
 const selectSort = (unSortedArr: number[]) => {
 	for (let i = 0; i < unSortedArr.length - 1; i++) {
@@ -80,6 +80,11 @@ const selectSort = (unSortedArr: number[]) => {
 }
 //call:
 selectSort([2, 1, 4, 5])
+```
+> java: 
+
+```java
+
 ```
 
 > 时间复杂度: 等差数列求和 结果为: O(n^2)
