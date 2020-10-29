@@ -176,11 +176,11 @@ mergeSort(arr)
 
 性质：两个挡板三个区域
 
-> [0...i) i 的左侧（不包含 i）全部为比 pivot 小的数
+> [0...i) i 的左侧全部为比 pivot 小的数
 
 > [i...j] i 和 j 之间为未知探索区域
 
-> (j...n-1] j 的右侧（不包含 j）全部为比 pivot 大或等于的数字
+> (j...n-1] j 的右侧全部为比 pivot 大或等于的数字
 
 ```typescript
 function swap(arr: number[], i: number, j: number) {
@@ -384,7 +384,17 @@ console.log(index)
 
 > [返回目录](#chapter-one)
 
-> 思路：把二维的数组映射为一维的
+-   题目描述
+-   给定一个只包含整数的二维矩阵，其每一行都按升序排序。下一行的第一个元素大于(或等于)前一行的最后一个元素.
+-   给定一个目标数，返回目标在矩阵中的位置。如果矩阵中不存在目标数，则返回 { -1, -1 }.
+-
+-   假定:
+-   给定矩阵不为零，其大小为 N \* M，其中 N >= 0, M >= 0.
+-
+-   例子:
+-   matrix = { {1, 2, 3}, {4, 5, 7}, {8, 9, 10} }
+-   target = 7, return {1, 2}
+-   target = 6, return { -1, -1 } 表示矩阵中不存在的目标数.
 
 ```
 matrix:   1  2  3  4
@@ -398,26 +408,29 @@ target: 6
 
 ```typescript
 const findMatrix = (matrix: number[][], target: number) => {
+	// corner case
 	if (matrix.length === 0 || matrix[0].length === 0) {
 		return false
 	}
 	let row = matrix.length
 	let col = matrix[0].length
 	let i = 0,
+		// 使用row * col将2维数组转换为1维数组
 		j = row * col - 1
 	while (i <= j) {
 		let mid = ((i + (j - i)) / 2) | 0
-		let _row = mid / col // map two-dimension matrix row
-		let _col = mid % col // map two-dimension matrix col
+		// 将一维数组中的位置转换为二维数组中的row和col
+		let _row = mid / col
+		let _col = mid % col
 		if (matrix[_row][_col] === target) {
-			return true
+			return [_row, _col]
 		} else if (matrix[_row][_col] > target) {
 			j = mid - 1
 		} else {
 			i = mid + 1
 		}
 	}
-	return false
+	return [-1, -1]
 }
 
 const index = findMatrix(
@@ -437,14 +450,18 @@ console.log(index)
 
 ```typescript
 const binarySearchCloset = (arr: number[], target: number) => {
+	//corner case
+	if (!arr || arr.length == 0) return -1
+
 	let left = 0,
 		right = arr.length - 1
 	//如果左不相邻右就持续while
 	// (left === right - 1) 这是相邻的条件 相邻就停止
+	//提前一步停下来
 	while (left < right - 1) {
 		let mid = (left + (right - left) / 2) | 0
 		if (arr[mid] > target) {
-			right = mid // 这里不能-1 是因为-1有可能会错过最接近的值(这道题是要找最接近的值) tips: 每次缩小的区间你必须确定是绝对不会再使用到的那块区域
+			right = mid // // right = mid - 1; 这样是错误的，可能会忽略掉某些元素。比如[1,4,5] target = 3, 第二步会直接L=M=R，跳过了正确答案4，所以这里不能-1 tips: 每次缩小的区间你必须确定是以后绝对不会再使用到的那块区间
 		} else if (arr[mid] < target) {
 			left = mid // 这里也不能+1 原因同上
 		} else {
@@ -469,6 +486,8 @@ console.log(number)
 
 ```typescript
 const binarySearchLeft = (arr: number[], target: number) => {
+	//corner case
+	if (!arr || arr.length == 0) return -1
 	let left = 0,
 		right = arr.length - 1
 	//如果左不相邻右就持续while
@@ -476,11 +495,11 @@ const binarySearchLeft = (arr: number[], target: number) => {
 	while (left < right - 1) {
 		let mid = (left + (right - left) / 2) | 0
 		if (arr[mid] > target) {
-			right = mid
+			right = mid // right=mid–1; right已经不是目标元素了，所以移位也会影响最终结果
 		} else if (arr[mid] < target) {
-			left = mid
+			left = mid //同上
 		} else {
-			right = mid //arr[mid] === target = true 找到了target值但不要停下来， 还需要持续检查左边是否还有target 因为题意是要找最左侧的target值
+			right = mid //arr[mid] === target = true 找到了target值但不要停下来， 还需要持续检查左边是否还有target 因为题意是要找最左侧的target值，所以mid-1是错的，因为可能当前找到的就只有这一个target元素
 		}
 	}
 	// 后续处理
@@ -490,7 +509,7 @@ const binarySearchLeft = (arr: number[], target: number) => {
 	} else {
 		return right
 	}
-	return -1
+	return -1 // 如果左右都不相等，说明该元素不存在
 }
 const number = binarySearchLeft([1, 4, 5, 5, 5, 7, 9], 5)
 console.log(number)
@@ -504,6 +523,8 @@ console.log(number)
 
 ```typescript
 const binarySearchRight = (arr: number[], target: number) => {
+	//corner case
+	if (!arr || arr.length == 0) return -1
 	let left = 0,
 		right = arr.length - 1
 	//如果左不相邻右就持续while
@@ -537,6 +558,17 @@ console.log(number)
 
 > [返回目录](#chapter-one)
 
+-   给定目标整数 T，非负整数 K 和按升序排序的整数数组 A，找到 A 中最接近 T 的 K 个数字。 如果存在平局，则始终首选较小的元素。
+-
+-   假设:
+-   arr 不为空
+-   K 保证大于等于 0，K 保证小于等于 arr.length
+-   返回大小为 K 的整数数组，其中包含 arr 中的 K 个最接近的数字（不是索引），并按数字和 target 之间的差值升序排列。
+-
+-   例子:
+-   arr = [1，2，3]，target = 2，K = 3，返回[2，1，3]或[2，3，1]
+-   arr = [1，4，6，8]，，target = 3，K = 3，返回[4，1，6]
+
 > 思路： 按照上面的套路， 肯定是先找到最接近 target 的那个数字的索引， 然后双指针往两边扩散， 哪个数字更接近 target 就 push 到结果数组中
 
 ```typescript
@@ -551,7 +583,7 @@ const findKthCloset = (arr: number[], target: number, k: number) => {
 		} else if (arr[mid] < target) {
 			left = mid
 		} else {
-			return mid
+			left = mid
 		}
 	}
 	let closetIdx = 0 //找到最接近的第一个数字 要么是左 要么是右 存储它的索引
@@ -595,50 +627,91 @@ console.log(result)
 
 > [返回目录](#chapter-one)
 
+-   描述：
+-   通过使用两个栈实现一个队列。队列应该提供 size()、isEmpty()、offer()、poll()和 peek()操作。当队列为空时，poll()和 peek()应该返回 null
+-
+-   假设：
+-   队列中的元素都是整数.
+-   size()应该返回队列中的元素数量.
+-   如果队列中没有缓冲元素，isEmpty()应该返回 true，否则返回 false.
+-
+-   要求：
+-   offer()方法的时间复杂度应该是 O(1)
+
 > 思路:
 
-> Stack1: 用来做缓冲， 只要是有元素往里进的时候就加到 Stack1 里
+> inStack: 用来做缓冲，只要是有元素往里进的时候就加到 inStack 里
 
-> Stack2:
+> outStack:
 
-> 1）如果 stack2 是空的， 然后将所有元素一个接一个的从 stack1 到 stack2 中， 然后从 Stack2 中 pop 出顶部元素
+> 1）如果 outStack 是空的， 然后将所有元素一个接一个的从 inStack 放到 outStack 中， 然后从 outStack 中 弹出顶部元素
 
-> 2）如果 stack2 不是空的，然后直接调用 Stack2 的 pop
+> 2）如果 outStack 不是空的，然后直接调用 outStack 的弹出
 
-> 时间复杂度：push() => O(1) pop() => O(n)
+> 时间复杂度：
+
+> push() : O(1) pop() : O(n)
 
 ```typescript
-var CQueue = function () {
-	this.stack1 = []
-	this.stack2 = []
-	this.count = 0
+class QueueByTwoStacks<T = number> {
+	private in: T[]
+	private out: T[]
+
+	public constructor() {
+		this.in = []
+		this.out = []
+	}
+
+	public poll(): T {
+		//如果out栈为空，则需要将元素从in栈移到out栈
+		this.shuffle()
+		if (!this.out.length) {
+			return null
+		} else {
+			return this.out.pop()
+		}
+	}
+
+	public offer(value: T): void {
+		this.in.push(value) //总是推到栈中
+	}
+
+	public peek(): T {
+		this.shuffle()
+		if (!this.out.length) {
+			return null
+		} else {
+			return this.out[this.out.length - 1]
+		}
+	}
+
+	public size(): number {
+		return this.in.length + this.out.length
+	}
+
+	public isEmpty(): boolean {
+		return !this.in.length && !this.out.length
+	}
+
+	//当out栈为空时，将元素从in栈转移到out栈
+	public shuffle(): void {
+		if (!this.out.length) {
+			while (this.in.length) {
+				this.out.push(this.in.pop())
+			}
+		}
+	}
 }
 
-/**
- * @param {number} value
- * @return {void}
- */
-CQueue.prototype.appendTail = function (value) {
-	while (this.stack1.length) {
-		this.stack2.push(this.stack1.pop())
-	}
-	this.stack1.push(value)
-	while (this.stack2.length) {
-		this.stack1.push(this.stack2.pop())
-	}
-	this.count++
-}
-
-/**
- * @return {number}
- */
-CQueue.prototype.deleteHead = function () {
-	if (this.count == 0) {
-		return -1
-	}
-	this.count--
-	return this.stack1.pop()
-}
+const queue = new QueueByTwoStacks()
+queue.offer(1)
+queue.offer(2)
+queue.offer(3)
+console.log(queue.poll()) // 1
+console.log(queue.poll()) // 2
+console.log(queue.peek()) // 3
+console.log(queue.isEmpty()) //false
+console.log(queue.poll()) //3
 ```
 
 ### 实现最小栈
