@@ -162,7 +162,7 @@ let arr = [2, 1, 4, 5, 8, 9, 10, 3, 4, 6]
 mergeSort(arr)
 ```
 
-![mergeSort](https://github.com/Dreams-d/Algorithm/blob/master/mergeSort.png)
+![mergeSort](https://i.ibb.co/MC3F8kG/php-QFJPLm.png)
 
 > 时间复杂度: 每一次切一半 第一层 O(1) 第二层 O(2) 第三层 O(4)....最后一层 O(n)
 > 合并时每一层都是 o(n) 有 logn 层 所以最终复杂度为 O(nlogn)
