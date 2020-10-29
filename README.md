@@ -1,33 +1,35 @@
 <!-- 目录开始 -->
+
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
 **不折腾的前端，和咸鱼有什么区别**
 
-| 目录 |
-| --- |
-| [一 目录](#chapter-one) |
-| <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two) |
-| &emsp;[2.1 语言说明](#chapter-two-one) |
-| &emsp;[2.2 学习攻略](#chapter-two-two) |
-| &emsp;[2.3 关于 issue](#chapter-two-three) |
+| 目录                                                                                         |
+| -------------------------------------------------------------------------------------------- |
+| [一 目录](#chapter-one)                                                                      |
+| <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two)           |
+| &emsp;[2.1 语言说明](#chapter-two-one)                                                       |
+| &emsp;[2.2 学习攻略](#chapter-two-two)                                                       |
+| &emsp;[2.3 关于 issue](#chapter-two-three)                                                   |
 | <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 排序算法](#chapter-three) |
-| &emsp;[3.1 选择排序](#chapter-three-one) |
-| &emsp;[3.2 归并排序](#chapter-three-two) |
-| &emsp;[3.3 快速排序](#chapter-three-three) |
-| &emsp;[3.4 RainbowSort](#chapter-three-four) |
+| &emsp;[3.1 选择排序](#chapter-three-one)                                                     |
+| &emsp;[3.2 归并排序](#chapter-three-two)                                                     |
+| &emsp;[3.3 快速排序](#chapter-three-three)                                                   |
+| &emsp;[3.4 RainbowSort](#chapter-three-four)                                                 |
 | <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 recursion I](#chapter-four) |
-| &emsp;[4.1 斐波那契数列](#chapter-four-one) |
-| &emsp;[4.2 a 的 b 次方(基础版)](#chapter-four-two) |
-| <a name="catalog-chapter-five" id="catalog-chapter-five"></a>[五 二分查找法](#chapter-five) |
-| &emsp;[5.1 寻找目标数字在排序数组中的索引](#chapter-five-one) |
-| &emsp;[5.2 二维数组里是否存在某个数字](#chapter-five-two) |
-| &emsp;[5.3 寻找最接近 target 的值的索引](#chapter-five-three) |
-| &emsp;[5.4 寻找最左边的 target 的值的索引](#chapter-five-four) |
-| &emsp;[5.5 寻找最右边的 target 值的索引](#chapter-five-five) |
-| &emsp;[5.6 寻找最接近 target 的 7 个数字](#chapter-five-six) |
-| <a name="catalog-chapter-six" id="catalog-chapter-six"></a>[六 Stack & Queue](#chapter-six) |
-| &emsp;[6.1 用两个 stack 实现一个 Queue](#chapter-six-one) |
-| <a name="catalog-chapter-seven" id="catalog-chapter-seven"></a>[七 更新...](#chapter-seven) |
+| &emsp;[4.1 斐波那契数列](#chapter-four-one)                                                  |
+| &emsp;[4.2 a 的 b 次方(基础版)](#chapter-four-two)                                           |
+| <a name="catalog-chapter-five" id="catalog-chapter-five"></a>[五 二分查找法](#chapter-five)  |
+| &emsp;[5.1 寻找目标数字在排序数组中的索引](#chapter-five-one)                                |
+| &emsp;[5.2 二维数组里是否存在某个数字](#chapter-five-two)                                    |
+| &emsp;[5.3 寻找最接近 target 的值的索引](#chapter-five-three)                                |
+| &emsp;[5.4 寻找最左边的 target 的值的索引](#chapter-five-four)                               |
+| &emsp;[5.5 寻找最右边的 target 值的索引](#chapter-five-five)                                 |
+| &emsp;[5.6 寻找最接近 target 的 7 个数字](#chapter-five-six)                                 |
+| <a name="catalog-chapter-six" id="catalog-chapter-six"></a>[六 Stack & Queue](#chapter-six)  |
+| &emsp;[6.1 用两个 stack 实现一个 Queue](#chapter-six-one)                                    |
+| <a name="catalog-chapter-seven" id="catalog-chapter-seven"></a>[七 更新...](#chapter-seven)  |
+
 <!-- 目录结束 -->
 
 ## <a name="chapter-two" id="chapter-two"></a>二 前言
@@ -66,7 +68,7 @@
 
 > [返回目录](#chapter-one)
 
-> javascript: 
+> javascript:
 
 ```typescript
 const selectSort = (unSortedArr: number[]) => {
@@ -87,7 +89,7 @@ const selectSort = (unSortedArr: number[]) => {
 selectSort([2, 1, 4, 5])
 ```
 
-> java: 
+> java:
 
 ```java
 /*
@@ -601,7 +603,7 @@ console.log(result)
 
 > 1）如果 stack2 是空的， 然后将所有元素一个接一个的从 stack1 到 stack2 中， 然后从 Stack2 中 pop 出顶部元素
 
-> 2） 如果 stack2 不是空的，然后直接调用 Stack2 的 pop
+> 2）如果 stack2 不是空的，然后直接调用 Stack2 的 pop
 
 > 时间复杂度：push() => O(1) pop() => O(n)
 
@@ -636,6 +638,67 @@ CQueue.prototype.deleteHead = function () {
 	}
 	this.count--
 	return this.stack1.pop()
+}
+```
+
+### 实现最小栈
+
+-   要求描述：
+-   增强栈实现以支持 min()操作。min()应该返回堆栈中的当前最小值。如果堆栈是空的，min()应该返回-1
+-   pop() - 删除并返回顶部元素，如果栈为空，则返回-1
+-   push(int element) - 将元素推到顶部
+-   top() - 返回顶部元素而不删除它，如果栈是空的，返回-1
+-   min() - 返回栈中的当前最小值
+-
+-   尝试使 minStack 中的元素按降序排列，并在 minStack 中以这种格式存储元素 <value, 将该元素添加到 minStack 时 stack 的大小>
+
+> demo:
+
+-   Stack|| 3 3 3 2 1 0 3 1 -7 3 1 -7 -7 -6 -8
+-   minStack|| <3,1> <2,4> <1,5> <0,6>,<-7,9>,<-8,15>
+
+```typescript
+var MinStack = function () {
+	this.stack = []
+	this.minStack = []
+}
+
+/**
+ * @param {number} x
+ * @return {void}
+ */
+MinStack.prototype.push = function (x) {
+	this.stack.push(x)
+	if (this.minStack.length === 0 || x < this.minStack[this.minStack.length - 1][0]) {
+		this.minStack.push([x, this.stack.length])
+	}
+}
+
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function () {
+	if (!this.stack.length) return -1
+	let stackTopValue = this.stack[this.stack.length - 1]
+	let minStackTop = this.minStack[this.minStack.length - 1]
+	if (stackTopValue === minStackTop[0] && minStackTop[1] === this.stack.length) {
+		this.minStack.pop()
+	}
+	this.stack.pop()
+}
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function () {
+	return this.stack.length ? this.stack[this.stack.length - 1] : -1
+}
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function () {
+	return this.minStack.length ? this.minStack[this.minStack.length - 1][0] : -1
 }
 ```
 
