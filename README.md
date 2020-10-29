@@ -2,8 +2,6 @@
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
-**不折腾的前端，和咸鱼有什么区别**
-
 | 目录                                                                                         |
 | -------------------------------------------------------------------------------------------- |
 | [一 目录](#chapter-one)                                                                      |
@@ -28,6 +26,7 @@
 | &emsp;[5.6 寻找最接近 target 的 7 个数字](#chapter-five-six)                                 |
 | <a name="catalog-chapter-six" id="catalog-chapter-six"></a>[六 Stack & Queue](#chapter-six)  |
 | &emsp;[6.1 用两个 stack 实现一个 Queue](#chapter-six-one)                                    |
+| &emsp;[6.2 实现最小栈](#chapter-six-two)                                                     |
 | <a name="catalog-chapter-seven" id="catalog-chapter-seven"></a>[七 更新...](#chapter-seven)  |
 
 <!-- 目录结束 -->
@@ -714,7 +713,9 @@ console.log(queue.isEmpty()) //false
 console.log(queue.poll()) //3
 ```
 
-### 实现最小栈
+### <a name="chapter-six-two" id="chapter-six-two"></a>6.2 实现最小栈
+
+> [返回目录](#chapter-one)
 
 -   要求描述：
 -   增强栈实现以支持 min()操作。min()应该返回堆栈中的当前最小值。如果堆栈是空的，min()应该返回-1
