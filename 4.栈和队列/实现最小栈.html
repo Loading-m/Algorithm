@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>实现最小栈</title>
+	</head>
+	<body>
+		<script>
+			var MinStack = function () {
+				this.stack = []
+				this.minStack = []
+			}
+
+			/**
+			 * @param {number} x
+			 * @return {void}
+			 */
+			MinStack.prototype.push = function (x) {
+				this.stack.push(x)
+				if (this.minStack.length === 0 || x < this.minStack[this.minStack.length - 1][0]) {
+					this.minStack.push([x, this.stack.length])
+				}
+			}
+
+			/**
+			 * @return {void}
+			 */
+			MinStack.prototype.pop = function () {
+				if (!this.stack.length) return -1
+				let stackTopValue = this.stack[this.stack.length - 1]
+				let minStackTop = this.minStack[this.minStack.length - 1]
+				if (stackTopValue === minStackTop[0] && minStackTop[1] === this.stack.length) {
+					this.minStack.pop()
+				}
+				this.stack.pop()
+			}
+
+			/**
+			 * @return {number}
+			 */
+			MinStack.prototype.top = function () {
+				return this.stack.length ? this.stack[this.stack.length - 1] : -1
+			}
+
+			/**
+			 * @return {number}
+			 */
+			MinStack.prototype.getMin = function () {
+				return this.minStack.length ? this.minStack[this.minStack.length - 1][0] : -1
+			}
+		</script>
+	</body>
+</html>

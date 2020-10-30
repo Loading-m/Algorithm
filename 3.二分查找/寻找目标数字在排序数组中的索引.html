@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>寻找目标数字在排序数组中的索引</title>
+	</head>
+	<body>
+		<script>
+			const binarySearch = (arr, target) => {
+				let left = 0,
+					right = arr.length - 1
+				//假设arr只有一个元素，如果是 < 的话, 那么一个元素就会进不了while循环（就会直接return -1了 是错的） 所以是<=
+				while (left <= right) {
+					let mid = (left + (right - left) / 2) | 0
+					if (arr[mid] > target) {
+						right = mid - 1 //往左手边找 因为target比中间元素还要小 说明右边不可能再有元素符合条件了 所以往左手边小的数字里继续找(缩小范围)
+					} else if (arr[mid] < target) {
+						left = mid + 1 //往右手边找 因为target比中间元素还要大说明左边不可能再有元素符合条件了 所以往右手边大的数字里继续找(缩小范围)
+					} else {
+						return mid //找到了想要的数字
+					}
+				}
+				return -1
+			}
+			const index = binarySearch([1, 2, 3, 4, 5, 6], 4)
+			console.log(index)
+		</script>
+	</body>
+</html>

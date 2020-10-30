@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			const findKthCloset = (arr: number[], target: number, k: number) => {
+				//沿用上面的模板, 找到最接近的那个值
+				let left = 0,
+					right = arr.length - 1
+				while (left < right - 1) {
+					let mid = (left + (right - left) / 2) | 0
+					if (arr[mid] > target) {
+						right = mid
+					} else if (arr[mid] < target) {
+						left = mid
+					} else {
+						left = mid
+					}
+				}
+				let closetIdx = 0 //找到最接近的第一个数字 要么是左 要么是右 存储它的索引
+				// 后续处理
+				if (Math.abs(arr[left] - target) <= Math.abs(arr[right] - target)) {
+					closetIdx = left
+				} else {
+					closetIdx = right
+				}
+				let result = [] //需要返回的结果数组
+				let l = closetIdx //左边界
+				let r = closetIdx + 1 //右边界
+				//找K个数
+				for (let i = 0; i < k; i++) {
+					//如果右边界已经没有元素，则让左边的一个元素进来
+					if (r >= arr.length) {
+						result.push(arr[l--])
+					} else if (l < 0) {
+						//如果左边界没有元素，则让右边的一个元素进来
+						result.push(arr[r++])
+					} else if (Math.abs(arr[l] - target) <= Math.abs(arr[r] - target)) {
+						// 如果都有元素就看谁更接近
+						result.push(arr[l--])
+					} else {
+						result.push(arr[r++])
+					}
+				}
+				return result
+			}
+			const result = findKthCloset([1, 4, 5, 7, 8, 9, 11], 5, 4)
+			console.log(result)
+		</script>
+	</body>
+</html>

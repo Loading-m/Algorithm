@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>二维数组里是否存在某个数字</title>
+	</head>
+	<body>
+		<script>
+			const findMatrix = (matrix, target) => {
+				// corner case
+				if (matrix.length === 0 || matrix[0].length === 0) {
+					return false
+				}
+				let row = matrix.length
+				let col = matrix[0].length
+				let i = 0,
+					// 使用row * col将2维数组转换为1维数组
+					j = row * col - 1
+				while (i <= j) {
+					let mid = ((i + (j - i)) / 2) | 0
+					// 将一维数组中的位置转换为二维数组中的row和col
+					let _row = mid / col
+					let _col = mid % col
+					if (matrix[_row][_col] === target) {
+						return [_row, _col]
+					} else if (matrix[_row][_col] > target) {
+						j = mid - 1
+					} else {
+						i = mid + 1
+					}
+				}
+				return [-1, -1]
+			}
+
+			const index = findMatrix(
+				[
+					[1, 2, 3, 4],
+					[5, 6, 7, 8],
+					[9, 10, 11, 12],
+				],
+				6
+			)
+			console.log(index)
+		</script>
+	</body>
+</html>

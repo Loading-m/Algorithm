@@ -309,7 +309,7 @@ function fibo(n) {
 
 > 空间复杂度： O(n) => calc method: how many push call stacks
 
-![fibo](https://github.com/Dreams-d/Algorithm/blob/master/fibo.png)
+![fibo](https://i.ibb.co/MBx6zkY/php-Jv-S1-Py.png)
 
 > tips: 递归会记录每次调用之前的 local variable 的值
 > 例如 fibo(n - 1) 调用前会记录 n 的值
@@ -726,10 +726,12 @@ console.log(queue.poll()) //3
 -
 -   尝试使 minStack 中的元素按降序排列，并在 minStack 中以这种格式存储元素 <value, 将该元素添加到 minStack 时 stack 的大小>
 
-> demo:
+> 思路:
 
--   Stack|| 3 3 3 2 1 0 3 1 -7 3 1 -7 -7 -6 -8
--   minStack|| <3,1> <2,4> <1,5> <0,6>,<-7,9>,<-8,15>
+-   Stack || 3 3 3 2 1 0 3 1 -7 3 1 -7 -7 -6 -8
+-   minStack|| <3,1 > <2,4> <1,5> <0,6>,<-7,9>,<-8,15>
+
+> 一个数字进来时判断是不是比 minStack 栈顶的元素小，如果小则放到栈顶， pop 的时候判断如果栈顶的元素和最小栈栈顶的元素相同并且时入栈时的大小就删除掉最小栈里的元素
 
 ```typescript
 var MinStack = function () {
