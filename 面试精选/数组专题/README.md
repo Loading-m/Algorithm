@@ -1,4 +1,7 @@
+
+
 # 数组面试专题
+
 
 从题库高频考题以及刷题过程的总结，可以分析出在面试中对于数组部分可以简分为四个部分：
 
@@ -10,6 +13,10 @@
 大部分解题思路都是由上述特定的解决技巧所组合而成的，只有不断的将基础思想根深蒂固后，才能有非常大的把握去挑战更为复杂的问题。
 
 > 为了更贴合实际面试感觉，所思所想全部以注释形式给出（自己撸题时候留下的印迹...）
+
+## 速揽
+
+TODO: 速揽
 
 ## 双指针
 
@@ -159,7 +166,7 @@ var merge = function (nums1, m, nums2, n) {
 merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3);
 ```
 
-### [11. 盛最多水的容器] (https://leetcode-cn.com/problems/container-with-most-water/)
+### [11. 盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/)
 
 - 字节跳动|20
 - 亚马逊 Amazon|14
@@ -302,8 +309,7 @@ var threeSum = function(nums) {
 };
 ```
 
-
-### 54. 螺旋矩阵
+### [54. 螺旋矩阵](https://leetcode-cn.com/problems/spiral-matrix/)
 
 TODO: 补图
 
