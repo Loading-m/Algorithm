@@ -309,7 +309,7 @@ function fibo(n) {
 
 > 空间复杂度： O(n) => calc method: how many push call stacks
 
-![fibo](https://gitee.com/lmresp/Algorithm/blob/master/github-images/68747470733a2f2f692e6962622e636f2f4d4278367a6b592f7068702d4a762d53312d50792e706e67.png)
+![fibo](https://i.ibb.co/MBx6zkY/php-Jv-S1-Py.png)
 
 > tips: 递归会记录每次调用之前的 local variable 的值
 > 例如 fibo(n - 1) 调用前会记录 n 的值
