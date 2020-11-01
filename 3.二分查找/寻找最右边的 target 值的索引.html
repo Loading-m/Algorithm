@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			const binarySearchRight = (arr, target) => {
+				//corner case
+				if (!arr || arr.length == 0) return -1
+				let left = 0,
+					right = arr.length - 1
+				//如果左不相邻右就持续while
+				// (left === right - 1) 这是相邻的条件 相邻就停止
+				while (left < right - 1) {
+					let mid = (left + (right - left) / 2) | 0
+					if (arr[mid] > target) {
+						right = mid
+					} else if (arr[mid] < target) {
+						left = mid
+					} else {
+						left = mid //arr[mid] === target = true 找到了target值但不要停下来， 还需要持续检查右边是否还有target 因为题意是要找最右侧的target值
+					}
+				}
+				// 后续处理
+				// 因为是要找最右边的target 所以先检查右边界
+				if (arr[right] === target) {
+					return right
+				} else {
+					return left
+				}
+				return -1
+			}
+			const number = binarySearchRight([1, 4, 5, 5, 5, 7, 9], 5)
+			console.log(number)
+		</script>
+	</body>
+</html>

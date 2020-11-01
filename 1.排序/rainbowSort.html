@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>rainbowSort</title>
+	</head>
+	<body>
+		<script>
+			function swap(arr, i, j) {
+				;[arr[i], arr[j]] = [arr[j], arr[i]]
+			}
+			function rainbowSort(arr) {
+				let i = 0,
+					j = 0,
+					k = arr.length - 1
+				while (j <= k) {
+					if (arr[j] === 'a') {
+						swap(arr, i++, j++)
+					} else if (arr[j] === 'b') {
+						j++
+					} else if (arr[j] === 'c') {
+						swap(arr, j, k--)
+					}
+				}
+				return arr
+			}
+			const result = rainbowSort(['a', 'b', 'c', 'c', 'b', 'b', 'a'])
+			console.log(result)
+		</script>
+	</body>
+</html>

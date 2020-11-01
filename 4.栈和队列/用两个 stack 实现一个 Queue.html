@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>用两个 stack 实现一个 Queue</title>
+	</head>
+	<body>
+		<script>
+			class QueueByTwoStacks {
+				constructor() {
+					this.in = []
+					this.out = []
+				}
+
+				poll() {
+					//如果out栈为空，则需要将元素从in栈移到out栈
+					this.shuffle()
+					if (!this.out.length) {
+						return null
+					} else {
+						return this.out.pop()
+					}
+				}
+
+				offer(value) {
+					this.in.push(value) //总是推到栈中
+				}
+
+				peek() {
+					this.shuffle()
+					if (!this.out.length) {
+						return null
+					} else {
+						return this.out[this.out.length - 1]
+					}
+				}
+
+				size() {
+					return this.in.length + this.out.length
+				}
+
+				isEmpty() {
+					return !this.in.length && !this.out.length
+				}
+
+				//当out栈为空时，将元素从in栈转移到out栈
+				shuffle() {
+					if (!this.out.length) {
+						while (this.in.length) {
+							this.out.push(this.in.pop())
+						}
+					}
+				}
+			}
+
+			const queue = new QueueByTwoStacks()
+			queue.offer(1)
+			queue.offer(2)
+			queue.offer(3)
+			console.log(queue.poll()) // 1
+			console.log(queue.poll()) // 2
+			console.log(queue.peek()) // 3
+			console.log(queue.isEmpty()) //false
+			console.log(queue.poll()) //3
+		</script>
+	</body>
+</html>

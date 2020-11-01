@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>选择排序</title>
+	</head>
+	<body>
+		<script>
+			const selectSort = (unSortedArr) => {
+				for (let i = 0; i < unSortedArr.length - 1; i++) {
+					//循环多少次
+					let min = i
+					for (let j = i + 1; j < unSortedArr.length; j++) {
+						//寻找所有数组中最小的那个数不断更新最小值
+						if (unSortedArr[j] < unSortedArr[min]) {
+							min = j
+						}
+					}
+					//交换 （最小值和未排好序的最左侧进行交换）
+					;[unSortedArr[i], unSortedArr[min]] = [unSortedArr[min], unSortedArr[i]]
+				}
+				return unSortedArr
+			}
+			//call:
+			const result = selectSort([2, 1, 4, 5])
+			console.log(result)
+		</script>
+	</body>
+</html>

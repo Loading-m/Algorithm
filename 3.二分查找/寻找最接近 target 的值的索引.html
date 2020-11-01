@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>寻找最接近 target 的值的索引</title>
+	</head>
+	<body>
+		<script>
+			const binarySearchCloset = (arr, target) => {
+				//corner case
+				if (!arr || arr.length == 0) return -1
+
+				let left = 0,
+					right = arr.length - 1
+				//如果左不相邻右就持续while
+				// (left === right - 1) 这是相邻的条件 相邻就停止
+				//提前一步停下来
+				while (left < right - 1) {
+					let mid = (left + (right - left) / 2) | 0
+					if (arr[mid] > target) {
+						right = mid // // right = mid - 1; 这样是错误的，可能会忽略掉某些元素。比如[1,4,5] target = 3, 第二步会直接L=M=R，跳过了正确答案4，所以这里不能-1 tips: 每次缩小的区间你必须确定是以后绝对不会再使用到的那块区间
+					} else if (arr[mid] < target) {
+						left = mid // 这里也不能+1 原因同上
+					} else {
+						return mid //找到了想要的数字
+					}
+				}
+				// 后续处理
+				// 如果 |left位置的值 - t| 小于 |right位置的值 - t| 说明left更接近所以返回left
+				if (Math.abs(arr[left] - target) <= Math.abs(arr[right] - target)) {
+					return left
+				} else {
+					return right
+				}
+			}
+			const number = binarySearchCloset([1, 3, 4, 7, 9], 5)
+			console.log(number)
+		</script>
+	</body>
+</html>

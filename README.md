@@ -1,5 +1,5 @@
 <!-- 目录开始 -->
-
+### 码云地址: https://gitee.com/lmresp/Algorithm (国内快速访问)
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
 | 目录                                                                                         |
@@ -24,6 +24,10 @@
 | &emsp;[5.4 寻找最左边的 target 的值的索引](#chapter-five-four)                               |
 | &emsp;[5.5 寻找最右边的 target 值的索引](#chapter-five-five)                                 |
 | &emsp;[5.6 寻找最接近 target 的 7 个数字](#chapter-five-six)                                 |
+| <a name="catalog-chapter-six" id="catalog-chapter-six"></a>[六 Stack & Queue](#chapter-six)  |
+| &emsp;[6.1 用两个 stack 实现一个 Queue](#chapter-six-one)                                    |
+| &emsp;[6.2 实现最小栈](#chapter-six-two)                                                     |
+| <a name="catalog-chapter-seven" id="catalog-chapter-seven"></a>[七 更新...](#chapter-seven)  |
 
 <!-- 目录结束 -->
 
@@ -63,7 +67,7 @@
 
 > [返回目录](#chapter-one)
 
-> javascript: 
+> javascript:
 
 ```typescript
 const selectSort = (unSortedArr: number[]) => {
@@ -84,7 +88,7 @@ const selectSort = (unSortedArr: number[]) => {
 selectSort([2, 1, 4, 5])
 ```
 
-> java: 
+> java:
 
 ```java
 /*
@@ -158,7 +162,111 @@ let arr = [2, 1, 4, 5, 8, 9, 10, 3, 4, 6]
 mergeSort(arr)
 ```
 
-![mergeSort](https://github.com/Dreams-d/Algorithm/blob/master/mergeSort.png)
+![mergeSort](https://i.loli.net/2020/10/29/6vKXIh15meGanqJ.png)
+
+> java版本一:
+>
+```java
+    /**
+     * 思想：分治法，将问题分成一些小的问题然后递归求解。
+     * 举例：将两个已经有序的子序列合并成一个有序序列，比如要将[4,5,7,8]和[1,2,3,6]两个已经有序的子序列，合并为最终序列[1,2,3,4,5,6,7,8]
+     */
+
+    public static Vector mergeSort(int[] arr, int left, int right) {
+        //最终返回的结果
+        Vector<Integer> solution = new Vector<>();
+        //base case 只有一个直接返回
+        if (left == right) {
+            solution.add(arr[left]);
+            return solution;
+        }
+        //采用（ left + right ）/2 方式，数值较大可能会溢出
+        int mid = left + (right - left) / 2;
+        Vector<Integer> solution_left = mergeSort(arr, left, mid);//排好序的左子列
+        //break point
+        Vector<Integer> solution_right = mergeSort(arr, mid + 1, right);//排好序的右子列
+        //break point
+        return combine(solution_left, solution_right);
+    }
+
+    private static Vector<Integer> combine(Vector<Integer> solution_left, Vector<Integer> solution_right) {
+        Vector<Integer> solution = new Vector<>();
+        //例：将两个有序子列[4,5,7,8]和[1,2,3,6]初始化两个指针，按位比较大小存入solution
+        int i = 0, j = 0;
+        while (i < solution_left.size() && j < solution_right.size()) {
+            if (solution_left.get(i) < solution_right.get(j)) {
+                solution.add(solution_left.get(i));
+                i++;
+            } else {
+                solution.add(solution_right.get(j));
+                j++;
+            }
+        }
+        //将剩余的元素全部加入solution
+        while (i < solution_left.size()) {
+            solution.add(solution_left.get(i));
+            i++;
+        }
+        while (j < solution_right.size()) {
+            solution.add(solution_right.get(j));
+            j++;
+        }
+        return solution;
+    }
+
+//call
+int[] arr = {2, 1, 4, 5, 8, 9, 10, 3, 4, 6};
+Vector solution = mergeSort(arr, 0, arr.length - 1);
+System.out.println(solution.toString());//output:[1, 2, 3, 4, 4, 5, 6, 8, 9, 10]
+```
+>java版本二:
+>
+```java
+    public static void sort(int[] arr) {
+        //在排序前，先建好一个长度等于原数组长度的临时数组，避免递归中频繁开辟空间
+        int[] temp = new int[arr.length];
+        sort(arr, 0, arr.length - 1, temp);
+    }
+
+    private static void sort(int[] arr, int left, int right, int[] temp) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            sort(arr, left, mid, temp);//左边归并排序，使得左子序列有序
+            sort(arr, mid + 1, right, temp);//右边归并排序，使得右子序列有序
+            merge(arr, left, mid, right, temp);//将两个有序子数组合并操作
+        }
+    }
+
+    private static void merge(int[] arr, int left, int mid, int right, int[] temp) {
+        int i = left;//左序列指针
+        int j = mid + 1;//右序列指针
+        int t = 0;//临时数组指针
+        while (i <= mid && j <= right) {
+            if (arr[i] <= arr[j]) {
+                temp[t++] = arr[i++];
+            } else {
+                temp[t++] = arr[j++];
+            }
+        }
+        while (i <= mid) {//将左边剩余元素填充进temp中
+            temp[t++] = arr[i++];
+        }
+        while (j <= right) {//将右序列剩余元素填充进temp中
+            temp[t++] = arr[j++];
+        }
+        t = 0;
+        //将temp中的元素全部拷贝到原数组中
+        while (left <= right) {
+            arr[left++] = temp[t++];
+        }
+    }
+//call
+int[] arr = {2, 1, 4, 5, 8, 9, 10, 3, 4, 6};
+sort(arr);
+System.out.println(Arrays.toString(arr));//output:[1, 2, 3, 4, 4, 5, 6, 8, 9, 10]
+```
+>
+>
 
 > 时间复杂度: 每一次切一半 第一层 O(1) 第二层 O(2) 第三层 O(4)....最后一层 O(n)
 > 合并时每一层都是 o(n) 有 logn 层 所以最终复杂度为 O(nlogn)
@@ -171,11 +279,11 @@ mergeSort(arr)
 
 性质：两个挡板三个区域
 
-> [0...i) i 的左侧（不包含 i）全部为比 pivot 小的数
+> [0...i) i 的左侧全部为比 pivot 小的数
 
 > [i...j] i 和 j 之间为未知探索区域
 
-> (j...n-1] j 的右侧（不包含 j）全部为比 pivot 大或等于的数字
+> (j...n-1] j 的右侧全部为比 pivot 大或等于的数字
 
 ```typescript
 function swap(arr: number[], i: number, j: number) {
@@ -305,7 +413,7 @@ function fibo(n) {
 
 > 空间复杂度： O(n) => calc method: how many push call stacks
 
-![fibo](https://github.com/Dreams-d/Algorithm/blob/master/fibo.png)
+![fibo](https://i.ibb.co/MBx6zkY/php-Jv-S1-Py.png)
 
 > tips: 递归会记录每次调用之前的 local variable 的值
 > 例如 fibo(n - 1) 调用前会记录 n 的值
@@ -334,7 +442,7 @@ function a_pow_b(a: number, b: number) {
 }
 ```
 
-![a_pow_b](https://github.com/Dreams-d/Algorithm/blob/master/a_pow_b.png)
+![a_pow_b](https://i.loli.net/2020/10/29/QXYwNudrqaK37kH.png)
 
 > 时间复杂度： O(logb)
 
@@ -379,7 +487,17 @@ console.log(index)
 
 > [返回目录](#chapter-one)
 
-> 思路：把二维的数组映射为一维的
+-   题目描述
+-   给定一个只包含整数的二维矩阵，其每一行都按升序排序。下一行的第一个元素大于(或等于)前一行的最后一个元素.
+-   给定一个目标数，返回目标在矩阵中的位置。如果矩阵中不存在目标数，则返回 { -1, -1 }.
+-
+-   假定:
+-   给定矩阵不为零，其大小为 N \* M，其中 N >= 0, M >= 0.
+-
+-   例子:
+-   matrix = { {1, 2, 3}, {4, 5, 7}, {8, 9, 10} }
+-   target = 7, return {1, 2}
+-   target = 6, return { -1, -1 } 表示矩阵中不存在的目标数.
 
 ```
 matrix:   1  2  3  4
@@ -393,26 +511,29 @@ target: 6
 
 ```typescript
 const findMatrix = (matrix: number[][], target: number) => {
+	// corner case
 	if (matrix.length === 0 || matrix[0].length === 0) {
 		return false
 	}
 	let row = matrix.length
 	let col = matrix[0].length
 	let i = 0,
+		// 使用row * col将2维数组转换为1维数组
 		j = row * col - 1
 	while (i <= j) {
 		let mid = ((i + (j - i)) / 2) | 0
-		let _row = mid / col // map two-dimension matrix row
-		let _col = mid % col // map two-dimension matrix col
+		// 将一维数组中的位置转换为二维数组中的row和col
+		let _row = mid / col
+		let _col = mid % col
 		if (matrix[_row][_col] === target) {
-			return true
+			return [_row, _col]
 		} else if (matrix[_row][_col] > target) {
 			j = mid - 1
 		} else {
 			i = mid + 1
 		}
 	}
-	return false
+	return [-1, -1]
 }
 
 const index = findMatrix(
@@ -432,14 +553,18 @@ console.log(index)
 
 ```typescript
 const binarySearchCloset = (arr: number[], target: number) => {
+	//corner case
+	if (!arr || arr.length == 0) return -1
+
 	let left = 0,
 		right = arr.length - 1
 	//如果左不相邻右就持续while
 	// (left === right - 1) 这是相邻的条件 相邻就停止
+	//提前一步停下来
 	while (left < right - 1) {
 		let mid = (left + (right - left) / 2) | 0
 		if (arr[mid] > target) {
-			right = mid // 这里不能-1 是因为-1有可能会错过最接近的值(这道题是要找最接近的值) tips: 每次缩小的区间你必须确定是绝对不会再使用到的那块区域
+			right = mid // // right = mid - 1; 这样是错误的，可能会忽略掉某些元素。比如[1,4,5] target = 3, 第二步会直接L=M=R，跳过了正确答案4，所以这里不能-1 tips: 每次缩小的区间你必须确定是以后绝对不会再使用到的那块区间
 		} else if (arr[mid] < target) {
 			left = mid // 这里也不能+1 原因同上
 		} else {
@@ -464,6 +589,8 @@ console.log(number)
 
 ```typescript
 const binarySearchLeft = (arr: number[], target: number) => {
+	//corner case
+	if (!arr || arr.length == 0) return -1
 	let left = 0,
 		right = arr.length - 1
 	//如果左不相邻右就持续while
@@ -471,11 +598,11 @@ const binarySearchLeft = (arr: number[], target: number) => {
 	while (left < right - 1) {
 		let mid = (left + (right - left) / 2) | 0
 		if (arr[mid] > target) {
-			right = mid
+			right = mid // right=mid–1; right已经不是目标元素了，所以移位也会影响最终结果
 		} else if (arr[mid] < target) {
-			left = mid
+			left = mid //同上
 		} else {
-			right = mid //arr[mid] === target = true 找到了target值但不要停下来， 还需要持续检查左边是否还有target 因为题意是要找最左侧的target值
+			right = mid //arr[mid] === target = true 找到了target值但不要停下来， 还需要持续检查左边是否还有target 因为题意是要找最左侧的target值，所以mid-1是错的，因为可能当前找到的就只有这一个target元素
 		}
 	}
 	// 后续处理
@@ -485,7 +612,7 @@ const binarySearchLeft = (arr: number[], target: number) => {
 	} else {
 		return right
 	}
-	return -1
+	return -1 // 如果左右都不相等，说明该元素不存在
 }
 const number = binarySearchLeft([1, 4, 5, 5, 5, 7, 9], 5)
 console.log(number)
@@ -499,6 +626,8 @@ console.log(number)
 
 ```typescript
 const binarySearchRight = (arr: number[], target: number) => {
+	//corner case
+	if (!arr || arr.length == 0) return -1
 	let left = 0,
 		right = arr.length - 1
 	//如果左不相邻右就持续while
@@ -532,6 +661,17 @@ console.log(number)
 
 > [返回目录](#chapter-one)
 
+-   给定目标整数 T，非负整数 K 和按升序排序的整数数组 A，找到 A 中最接近 T 的 K 个数字。 如果存在平局，则始终首选较小的元素。
+-
+-   假设:
+-   arr 不为空
+-   K 保证大于等于 0，K 保证小于等于 arr.length
+-   返回大小为 K 的整数数组，其中包含 arr 中的 K 个最接近的数字（不是索引），并按数字和 target 之间的差值升序排列。
+-
+-   例子:
+-   arr = [1，2，3]，target = 2，K = 3，返回[2，1，3]或[2，3，1]
+-   arr = [1，4，6，8]，，target = 3，K = 3，返回[4，1，6]
+
 > 思路： 按照上面的套路， 肯定是先找到最接近 target 的那个数字的索引， 然后双指针往两边扩散， 哪个数字更接近 target 就 push 到结果数组中
 
 ```typescript
@@ -546,7 +686,7 @@ const findKthCloset = (arr: number[], target: number, k: number) => {
 		} else if (arr[mid] < target) {
 			left = mid
 		} else {
-			return mid
+			left = mid
 		}
 	}
 	let closetIdx = 0 //找到最接近的第一个数字 要么是左 要么是右 存储它的索引
@@ -582,6 +722,166 @@ console.log(result)
 
 > 时间复杂度: O(logn + k)
 
-## Stack & Queue
+## <a name="chapter-six" id="chapter-six"></a>六 Stack & Queue
 
-## 更新...
+> [返回目录](#chapter-one)
+
+### <a name="chapter-six-one" id="chapter-six-one"></a>6.1 用两个 stack 实现一个 Queue
+
+> [返回目录](#chapter-one)
+
+-   描述：
+-   通过使用两个栈实现一个队列。队列应该提供 size()、isEmpty()、offer()、poll()和 peek()操作。当队列为空时，poll()和 peek()应该返回 null
+-
+-   假设：
+-   队列中的元素都是整数.
+-   size()应该返回队列中的元素数量.
+-   如果队列中没有缓冲元素，isEmpty()应该返回 true，否则返回 false.
+-
+-   要求：
+-   offer()方法的时间复杂度应该是 O(1)
+
+> 思路:
+
+> inStack: 用来做缓冲，只要是有元素往里进的时候就加到 inStack 里
+
+> outStack:
+
+> 1）如果 outStack 是空的， 然后将所有元素一个接一个的从 inStack 放到 outStack 中， 然后从 outStack 中 弹出顶部元素
+
+> 2）如果 outStack 不是空的，然后直接调用 outStack 的弹出
+
+> 时间复杂度：
+
+> push() : O(1) pop() : O(n)
+
+```typescript
+class QueueByTwoStacks<T = number> {
+	private in: T[]
+	private out: T[]
+
+	public constructor() {
+		this.in = []
+		this.out = []
+	}
+
+	public poll(): T {
+		//如果out栈为空，则需要将元素从in栈移到out栈
+		this.shuffle()
+		if (!this.out.length) {
+			return null
+		} else {
+			return this.out.pop()
+		}
+	}
+
+	public offer(value: T): void {
+		this.in.push(value) //总是推到栈中
+	}
+
+	public peek(): T {
+		this.shuffle()
+		if (!this.out.length) {
+			return null
+		} else {
+			return this.out[this.out.length - 1]
+		}
+	}
+
+	public size(): number {
+		return this.in.length + this.out.length
+	}
+
+	public isEmpty(): boolean {
+		return !this.in.length && !this.out.length
+	}
+
+	//当out栈为空时，将元素从in栈转移到out栈
+	public shuffle(): void {
+		if (!this.out.length) {
+			while (this.in.length) {
+				this.out.push(this.in.pop())
+			}
+		}
+	}
+}
+
+const queue = new QueueByTwoStacks()
+queue.offer(1)
+queue.offer(2)
+queue.offer(3)
+console.log(queue.poll()) // 1
+console.log(queue.poll()) // 2
+console.log(queue.peek()) // 3
+console.log(queue.isEmpty()) //false
+console.log(queue.poll()) //3
+```
+
+### <a name="chapter-six-two" id="chapter-six-two"></a>6.2 实现最小栈
+
+> [返回目录](#chapter-one)
+
+-   要求描述：
+-   增强栈实现以支持 min()操作。min()应该返回堆栈中的当前最小值。如果堆栈是空的，min()应该返回-1
+-   pop() - 删除并返回顶部元素，如果栈为空，则返回-1
+-   push(int element) - 将元素推到顶部
+-   top() - 返回顶部元素而不删除它，如果栈是空的，返回-1
+-   min() - 返回栈中的当前最小值
+-
+-   尝试使 minStack 中的元素按降序排列，并在 minStack 中以这种格式存储元素 <value, 将该元素添加到 minStack 时 stack 的大小>
+
+> 思路:
+
+-   Stack || 3 3 3 2 1 0 3 1 -7 3 1 -7 -7 -6 -8
+-   minStack|| <3,1> <2,4> <1,5> <0,6>,<-7,9>,<-8,15>
+
+> 一个数字进来时判断是不是比 minStack 栈顶的元素小，如果小则放到栈顶， pop 的时候判断如果栈顶的元素和最小栈栈顶的元素相同并且时入栈时的大小就删除掉最小栈里的元素
+
+```typescript
+var MinStack = function () {
+	this.stack = []
+	this.minStack = []
+}
+
+/**
+ * @param {number} x
+ * @return {void}
+ */
+MinStack.prototype.push = function (x) {
+	this.stack.push(x)
+	if (this.minStack.length === 0 || x < this.minStack[this.minStack.length - 1][0]) {
+		this.minStack.push([x, this.stack.length])
+	}
+}
+
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function () {
+	if (!this.stack.length) return -1
+	let stackTopValue = this.stack[this.stack.length - 1]
+	let minStackTop = this.minStack[this.minStack.length - 1]
+	if (stackTopValue === minStackTop[0] && minStackTop[1] === this.stack.length) {
+		this.minStack.pop()
+	}
+	this.stack.pop()
+}
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function () {
+	return this.stack.length ? this.stack[this.stack.length - 1] : -1
+}
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function () {
+	return this.minStack.length ? this.minStack[this.minStack.length - 1][0] : -1
+}
+```
+
+## <a name="chapter-seven" id="chapter-seven"></a>七 更新...
+
+> [返回目录](#chapter-one)

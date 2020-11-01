@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>斐波那契数列</title>
+	</head>
+	<body>
+		<script>
+			function fibo(n) {
+				if (n === 0) return 0
+				if (n === 1) return 1
+				// 需要注意: 这里的fibo(n - 1) + fibo(n - 2)并不是同时计算的,而是fibo(n - 1)直下的执行到底,直到遇到base case往上反弹后才会调用fibo(n - 2),之后把结果return到上一层recursion function中去
+				return fibo(n - 1) + fibo(n - 2)
+			}
+			const result = fibo(5)
+			console.log(result)
+		</script>
+	</body>
+</html>

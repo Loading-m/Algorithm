@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>寻找最左边的 target 的值的索引</title>
+	</head>
+	<body>
+		<script>
+			const binarySearchLeft = (arr, target) => {
+				//corner case
+				if (!arr || arr.length == 0) return -1
+				let left = 0,
+					right = arr.length - 1
+				//如果左不相邻右就持续while
+				// (left === right - 1) 这是相邻的条件 相邻就停止
+				while (left < right - 1) {
+					let mid = (left + (right - left) / 2) | 0
+					if (arr[mid] > target) {
+						right = mid // right=mid–1; right已经不是目标元素了，所以移位也会影响最终结果
+					} else if (arr[mid] < target) {
+						left = mid //同上
+					} else {
+						right = mid //arr[mid] === target = true 找到了target值但不要停下来， 还需要持续检查左边是否还有target 因为题意是要找最左侧的target值，所以mid-1是错的，因为可能当前找到的就只有这一个target元素
+					}
+				}
+				// 后续处理
+				// 因为是要找最左边的target 所以先检查左边界
+				if (arr[left] === target) {
+					return left
+				} else {
+					return right
+				}
+				return -1 // 如果左右都不相等，说明该元素不存在
+			}
+			const number = binarySearchLeft([1, 4, 5, 5, 5, 7, 9], 5)
+			console.log(number)
+		</script>
+	</body>
+</html>
