@@ -164,6 +164,110 @@ mergeSort(arr)
 
 ![mergeSort](https://i.loli.net/2020/10/29/6vKXIh15meGanqJ.png)
 
+> java版本一:
+>
+```java
+    /**
+     * 思想：分治法，将问题分成一些小的问题然后递归求解。
+     * 举例：将两个已经有序的子序列合并成一个有序序列，比如要将[4,5,7,8]和[1,2,3,6]两个已经有序的子序列，合并为最终序列[1,2,3,4,5,6,7,8]
+     */
+
+    public static Vector mergeSort(int[] arr, int left, int right) {
+        //最终返回的结果
+        Vector<Integer> solution = new Vector<>();
+        //base case 只有一个直接返回
+        if (left == right) {
+            solution.add(arr[left]);
+            return solution;
+        }
+        //采用（ left + right ）/2 方式，数值较大可能会溢出
+        int mid = left + (right - left) / 2;
+        Vector<Integer> solution_left = mergeSort(arr, left, mid);//排好序的左子列
+        //break point
+        Vector<Integer> solution_right = mergeSort(arr, mid + 1, right);//排好序的右子列
+        //break point
+        return combine(solution_left, solution_right);
+    }
+
+    private static Vector<Integer> combine(Vector<Integer> solution_left, Vector<Integer> solution_right) {
+        Vector<Integer> solution = new Vector<>();
+        //例：将两个有序子列[4,5,7,8]和[1,2,3,6]初始化两个指针，按位比较大小存入solution
+        int i = 0, j = 0;
+        while (i < solution_left.size() && j < solution_right.size()) {
+            if (solution_left.get(i) < solution_right.get(j)) {
+                solution.add(solution_left.get(i));
+                i++;
+            } else {
+                solution.add(solution_right.get(j));
+                j++;
+            }
+        }
+        //将剩余的元素全部加入solution
+        while (i < solution_left.size()) {
+            solution.add(solution_left.get(i));
+            i++;
+        }
+        while (j < solution_right.size()) {
+            solution.add(solution_right.get(j));
+            j++;
+        }
+        return solution;
+    }
+
+//call
+int[] arr = {2, 1, 4, 5, 8, 9, 10, 3, 4, 6};
+Vector solution = mergeSort(arr, 0, arr.length - 1);
+System.out.println(solution.toString());//output:[1, 2, 3, 4, 4, 5, 6, 8, 9, 10]
+```
+>java版本二:
+>
+```java
+    public static void sort(int[] arr) {
+        //在排序前，先建好一个长度等于原数组长度的临时数组，避免递归中频繁开辟空间
+        int[] temp = new int[arr.length];
+        sort(arr, 0, arr.length - 1, temp);
+    }
+
+    private static void sort(int[] arr, int left, int right, int[] temp) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            sort(arr, left, mid, temp);//左边归并排序，使得左子序列有序
+            sort(arr, mid + 1, right, temp);//右边归并排序，使得右子序列有序
+            merge(arr, left, mid, right, temp);//将两个有序子数组合并操作
+        }
+    }
+
+    private static void merge(int[] arr, int left, int mid, int right, int[] temp) {
+        int i = left;//左序列指针
+        int j = mid + 1;//右序列指针
+        int t = 0;//临时数组指针
+        while (i <= mid && j <= right) {
+            if (arr[i] <= arr[j]) {
+                temp[t++] = arr[i++];
+            } else {
+                temp[t++] = arr[j++];
+            }
+        }
+        while (i <= mid) {//将左边剩余元素填充进temp中
+            temp[t++] = arr[i++];
+        }
+        while (j <= right) {//将右序列剩余元素填充进temp中
+            temp[t++] = arr[j++];
+        }
+        t = 0;
+        //将temp中的元素全部拷贝到原数组中
+        while (left <= right) {
+            arr[left++] = temp[t++];
+        }
+    }
+//call
+int[] arr = {2, 1, 4, 5, 8, 9, 10, 3, 4, 6};
+sort(arr);
+System.out.println(Arrays.toString(arr));//output:[1, 2, 3, 4, 4, 5, 6, 8, 9, 10]
+```
+>
+>
+
 > 时间复杂度: 每一次切一半 第一层 O(1) 第二层 O(2) 第三层 O(4)....最后一层 O(n)
 > 合并时每一层都是 o(n) 有 logn 层 所以最终复杂度为 O(nlogn)
 
