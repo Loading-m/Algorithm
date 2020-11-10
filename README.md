@@ -131,6 +131,10 @@ System.out.println(Arrays.toString(arr));//output:[1, 2, 4, 5]
 
 ### <a name="chapter-three-two" id="chapter-three-two"></a>3.2 归并排序
 
+![mergeSort1](https://i.ibb.co/JBytq39/php-At0-Xe-F.gif)
+
+![mergeSort](https://i.loli.net/2020/10/29/6vKXIh15meGanqJ.png)
+
 > [返回目录](#chapter-one)
 
 > javascript
@@ -168,10 +172,6 @@ const mergeHelper = (leftArr: number[], rightArr: number[]) => {
 let arr = [2, 1, 4, 5, 8, 9, 10, 3, 4, 6]
 mergeSort(arr)
 ```
-
-![mergeSort1](https://i.ibb.co/JBytq39/php-At0-Xe-F.gif)
-
-![mergeSort](https://i.loli.net/2020/10/29/6vKXIh15meGanqJ.png)
 
 > java 版本一:
 
@@ -285,7 +285,11 @@ System.out.println(Arrays.toString(arr));//output:[1, 2, 3, 4, 4, 5, 6, 8, 9, 10
 
 ### <a name="chapter-three-three" id="chapter-three-three"></a>3.3 快速排序
 
-> [返回目录](#chapter-one)
+> js 实现思路： 是取第一个元素（或者最后一个元素）作为分界点，把整个数组分成左右两侧，左边的元素小于或者等于分界点元素，而右边的元素大于分界点元素，然后把分界点移到中间位置，对左右子数组分别进行递归，最后就能得到一个排序完成的数组。当子数组只有一个或者没有元素的时候就结束这个递归过程。其中最重要的是将整个数组根据分界点元素划分成左右两侧的逻辑
+>
+> ![quickSort](https://i.loli.net/2020/11/10/M1AxX4DafJNQwIY.gif)
+
+[返回目录](#chapter-one)
 
 性质：两个挡板三个区域
 
@@ -350,8 +354,6 @@ console.log(result)
 ​ 3 1 2 5 4 **6** 9 7 10 8
 
 ​ 在初始状态下，数字 6 在序列的第 1 位。我们的目标是将 6 挪到序列中间的某个位置，假设这个位置是 k。现在就需要寻找这个 k，并且以第 k 位为分界点，左边的数都小于等于 6，右边的数都大于等于 6。想一想，你有办法可以做到这点吗？
-
-​ 给你一个提示吧。请回忆一下冒泡排序，是如何通过“交换”，一步步让每个数归位的。此时你也可以通过“交换”的方法来达到目的。具体是如何一步步交换呢？怎样交换才既方便又节省时间呢？先别急着往下看，拿出笔来，在纸上画画看。我高中时第一次学习冒泡排序算法的时候，就觉得冒泡排序很浪费时间，每次都只能对相邻的两个数进行比较，这显然太不合理了。于是我就想了一个办法，后来才知道原来这就是“快速排序”，请允许我小小的自恋一下(^o^)。
 
 ​ 方法其实很简单：分别从初始序列“6 1 2 7 9 3 4 5 10 8”两端开始“探测”。先从右往左找一个小于 6 的数，再从左往右找一个大于 6 的数，然后交换他们。这里可以用两个变量 i 和 j，分别指向序列最左边和最右边。我们为这两个变量起个好听的名字“哨兵 i”和“哨兵 j”。刚开始的时候让哨兵 i 指向序列的最左边（即 i=1），指向数字 6。让哨兵 j 指向序列的最右边（即 j=10），指向数字 8。
 
@@ -464,6 +466,10 @@ System.out.println(Arrays.toString(arr));
 > (k = n - 1] k 的右侧全是 c
 
 > [j-k]为未知探索区域
+
+其实上面的问题可以转换为这：
+
+![rainbow.png](https://i.loli.net/2020/11/10/c56CJsxzBqM3dOy.jpg)
 
 ```typescript
 function swap(arr: number[], i: number, j: number) {
