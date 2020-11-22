@@ -276,7 +276,54 @@ sort(arr);
 System.out.println(Arrays.toString(arr));//output:[1, 2, 3, 4, 4, 5, 6, 8, 9, 10]
 ```
 
->
+>java 版本三（复习补充）：
+
+```java
+    public static void sort(int[] arr) {
+        //在排序前，先建好一个长度等于原数组长度的临时数组，避免递归中频繁开辟空间
+        int[] temp = new int[arr.length];
+        sort(arr, 0, arr.length - 1, temp);
+    }
+
+    private static void sort(int[] arr, int left, int right, int[] temp) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            sort(arr, left, mid, temp);//左边归并排序，使得左子序列有序
+            sort(arr, mid + 1, right, temp);//右边归并排序，使得右子序列有序
+            merge(arr, left, mid, right, temp);//将两个有序子数组合并操作
+        }
+    }
+
+    private static void merge(int[] arr, int left, int mid, int right, int[] temp) {
+        int i, j, k;
+        // 将需要排序的序列copy至临时数组
+        for (k = left; k <= right; k++) {
+            temp[k] = arr[k];
+        }
+        // i,j分别指向两个序列的起始位置
+        for (i = left, j = mid + 1, k = i; i <= mid && j <= right; k++) {
+            if (temp[i] <= temp[j]) {
+                arr[k] = temp[i++]; // 将较小值复制回原数组
+            } else {
+                arr[k] = temp[j++];// 将较小值复制回原数组
+            }
+        }
+        while (i <= mid) { // 将mid左子序列剩余元素依次复制回原数组
+            arr[k++] = temp[i++];
+        }
+        while (j <= right) { // 将mid右子序列剩余元素依次复制回原数组
+            arr[k++] = temp[j++];
+        }
+    }
+//call
+int[] arr = {7, 2, 8, 3, 4, 9};
+sort(arr);
+System.out.println(Arrays.toString(arr));
+//output
+[2, 3, 4, 7, 8, 9]
+```
+
+
 
 > 时间复杂度: 每一次切一半 第一层 O(1) 第二层 O(2) 第三层 O(4)....最后一层 O(n)
 > 合并时每一层都是 o(n) 有 logn 层 所以最终复杂度为 O(nlogn)
@@ -349,23 +396,23 @@ console.log(result)
 
 > java 实现思路：
 
-​ 我们讲快速排序结合一个例子来说明，假设我们现在对“6 1 2 7 9 3 4 5 10 8”这个 10 个数进行排序。首先在这个序列中随便找一个数作为基准数（不要被这个名词吓到了，就是一个用来参照的数，待会你就知道它用来做啥的了）。为了方便，就让第一个数 6 作为基准数吧。接下来，需要将这个序列中所有比基准数大的数放在 6 的右边，比基准数小的数放在 6 的左边，类似下面这种排列。
+ 我们讲快速排序结合一个例子来说明，假设我们现在对“6 1 2 7 9 3 4 5 10 8”这个 10 个数进行排序。首先在这个序列中随便找一个数作为基准数（不要被这个名词吓到了，就是一个用来参照的数，待会你就知道它用来做啥的了）。为了方便，就让第一个数 6 作为基准数吧。接下来，需要将这个序列中所有比基准数大的数放在 6 的右边，比基准数小的数放在 6 的左边，类似下面这种排列。
 
-​ 3 1 2 5 4 **6** 9 7 10 8
+ 3 1 2 5 4 **6** 9 7 10 8
 
-​ 在初始状态下，数字 6 在序列的第 1 位。我们的目标是将 6 挪到序列中间的某个位置，假设这个位置是 k。现在就需要寻找这个 k，并且以第 k 位为分界点，左边的数都小于等于 6，右边的数都大于等于 6。想一想，你有办法可以做到这点吗？
+ 在初始状态下，数字 6 在序列的第 1 位。我们的目标是将 6 挪到序列中间的某个位置，假设这个位置是 k。现在就需要寻找这个 k，并且以第 k 位为分界点，左边的数都小于等于 6，右边的数都大于等于 6。想一想，你有办法可以做到这点吗？
 
-​ 方法其实很简单：分别从初始序列“6 1 2 7 9 3 4 5 10 8”两端开始“探测”。先从右往左找一个小于 6 的数，再从左往右找一个大于 6 的数，然后交换他们。这里可以用两个变量 i 和 j，分别指向序列最左边和最右边。我们为这两个变量起个好听的名字“哨兵 i”和“哨兵 j”。刚开始的时候让哨兵 i 指向序列的最左边（即 i=1），指向数字 6。让哨兵 j 指向序列的最右边（即 j=10），指向数字 8。
+ 方法其实很简单：分别从初始序列“6 1 2 7 9 3 4 5 10 8”两端开始“探测”。先从右往左找一个小于 6 的数，再从左往右找一个大于 6 的数，然后交换他们。这里可以用两个变量 i 和 j，分别指向序列最左边和最右边。我们为这两个变量起个好听的名字“哨兵 i”和“哨兵 j”。刚开始的时候让哨兵 i 指向序列的最左边（即 i=1），指向数字 6。让哨兵 j 指向序列的最右边（即 j=10），指向数字 8。
 
 ![20161016095048861.png](https://i.loli.net/2020/11/08/BSqbwenpXF6ZWN8.png)
 
-​ 首先哨兵 j 开始出动。因为此处设置的基准数是最左边的数，所以需要让哨兵 j 先出动，这一点非常重要（请自己想一想为什么）。哨兵 j 一步一步地向左挪动（即 j--），直到找到一个小于 6 的数停下来。接下来哨兵 i 再一步一步向右挪动（即 i++），直到找到一个数大于 6 的数停下来。最后哨兵 j 停在了数字 5 面前，哨兵 i 停在了数字 7 面前。
+ 首先哨兵 j 开始出动。因为此处设置的基准数是最左边的数，所以需要让哨兵 j 先出动，这一点非常重要（请自己想一想为什么）。哨兵 j 一步一步地向左挪动（即 j--），直到找到一个小于 6 的数停下来。接下来哨兵 i 再一步一步向右挪动（即 i++），直到找到一个数大于 6 的数停下来。最后哨兵 j 停在了数字 5 面前，哨兵 i 停在了数字 7 面前。
 
 ![2.png](https://i.loli.net/2020/11/08/j1CtcDsgSuVMxBb.png)
 
 现在交换哨兵 i 和哨兵 j 所指向的元素的值。交换之后的序列如下。
 
-​ 6 1 2 **5** 9 3 4 **7** 10 8
+ 6 1 2 **5** 9 3 4 **7** 10 8
 
 ![3.png](https://i.loli.net/2020/11/08/Xlyatk4dJFVvDU5.png)
 
@@ -373,7 +420,7 @@ console.log(result)
 
 6 1 2 5 **4** 3 **9** 7 10 8
 
-​ 第二次交换结束，“探测”继续。哨兵 j 继续向左挪动，他发现了 3（比基准数 6 要小，满足要求）之后又停了下来。哨兵 i 继续向右移动，糟啦！此时哨兵 i 和哨兵 j 相遇了，哨兵 i 和哨兵 j 都走到 3 面前。说明此时“探测”结束。我们将基准数 6 和 3 进行交换。交换之后的序列如下。
+ 第二次交换结束，“探测”继续。哨兵 j 继续向左挪动，他发现了 3（比基准数 6 要小，满足要求）之后又停了下来。哨兵 i 继续向右移动，糟啦！此时哨兵 i 和哨兵 j 相遇了，哨兵 i 和哨兵 j 都走到 3 面前。说明此时“探测”结束。我们将基准数 6 和 3 进行交换。交换之后的序列如下。
 
 **3** 1 2 5 4 **6** 9 7 10 8
 
@@ -386,7 +433,7 @@ OK，解释完毕。现在基准数 6 已经归位，它正好处在序列的第
 
 2 1 **3** 5 4
 
-​ OK，现在 3 已经归位。接下来需要处理 3 左边的序列“2 1”和右边的序列“5 4”。对序列“2 1”以 2 为基准数进行调整，处理完毕之后的序列为“1 2”，到此 2 已经归位。序列“1”只有一个数，也不需要进行任何处理。至此我们对序列“2 1”已全部处理完毕，得到序列是“1 2”。序列“5 4”的处理也仿照此方法，最后得到的序列如下。
+ OK，现在 3 已经归位。接下来需要处理 3 左边的序列“2 1”和右边的序列“5 4”。对序列“2 1”以 2 为基准数进行调整，处理完毕之后的序列为“1 2”，到此 2 已经归位。序列“1”只有一个数，也不需要进行任何处理。至此我们对序列“2 1”已全部处理完毕，得到序列是“1 2”。序列“5 4”的处理也仿照此方法，最后得到的序列如下。
 
 1 2 3 4 5 6 9 7 10 8
 
@@ -399,7 +446,7 @@ OK，解释完毕。现在基准数 6 已经归位，它正好处在序列的第
 [原文转载：坐在马桶上看算法—快速排序](https://blog.csdn.net/afjaklsdflka/article/details/52829030)
 [参考：漫画-快速排序](https://blog.csdn.net/libaineu2004/article/details/82253412)
 
-> java:
+> java 版本一:
 
 ```java
     public static void quickSort(int[] arr) {
@@ -448,6 +495,68 @@ System.out.println(Arrays.toString(arr));
 //output
 [1, 2, 3, 4, 8, 9]
 ```
+>java 版本二（复习补充）：
+
+```java
+   /**
+     * 在快排中，选择一个合适的pivot可以减少树的高度对算法效率有关键的提升
+     * 因为初始序列是有序或逆序的时候，取左或取右作为pivot的两种方法都会使算法的效率变为最差，即树高为n,时间复杂度：O(n^2)
+     * 而取pivot可以有多种方式如：头，中，尾，三数取中，随机
+     * 这里我们用随机方式取pivot,其它思路大致
+     * 随机法：使用随机数生成一个随机数index，随机数的范围为[left, right]
+     * 并用此随机数为下标对应的元素a[index]作为pivot并与数组元素a[left]交换
+     */
+
+    public static void quickSort(int[] arr, int low, int height) {
+        if (low < height) {  //base case
+            int pivot = partition(arr, low, height);
+            //对pivot左边再进行快排
+            quickSort(arr, low, pivot - 1);
+            //对pivot右边边再进行快排
+            quickSort(arr, pivot + 1, height);
+        }
+    }
+
+    public static int partition(int[] a, int low, int height) {
+        //在partition搜索范围中随机生成一个作为pivot的元素下标
+        int index = random(low, height);
+        //将pivot与a[low]交换，使pivot都是partition中最左端那个值
+        swap(a, low, index);
+
+        int pivot = a[low];
+        while (low < height) {  //low和height确定搜索范围
+            while (low < height && a[height] >= pivot) --height;
+            a[low] = a[height]; //找到比pivot小的数，移动到左端
+            while (low < height && a[low] <= pivot) ++low;
+            a[height] = a[low]; //找到比pivot大的数，移动到右端
+        }
+        // 因为我们每次在partition中选取的pivot都是最左端那个值
+        // 所以最终只要我们把low和height指向的那个位置换成pivot
+        // 就保证了partition中 左边 < pivot < 右边
+        a[low] = pivot;
+        // 返回pivot的位置
+        return low;
+    }
+
+    public static int random(int low, int height) {
+        // 在给定范围内生成一个随机数
+        return low + (int) (Math.random() * (height - low + 1));
+    }
+
+    public static void swap(int[] arr, int a, int b) {
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+//call
+int[] arr = {7, 2, 8, 3, 4, 9};
+quickSort(arr, 0, arr.length - 1);
+System.out.println(Arrays.toString(arr));
+//output
+[2, 3, 4, 7, 8, 9]
+```
+
+
 
 ### <a name="chapter-three-four" id="chapter-three-four"></a>3.4 RainbowSort
 
