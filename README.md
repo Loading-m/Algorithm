@@ -580,6 +580,8 @@ System.out.println(Arrays.toString(arr));
 
 ![rainbow.png](https://i.loli.net/2020/11/10/c56CJsxzBqM3dOy.jpg)
 
+> javaScript:
+
 ```typescript
 function swap(arr: number[], i: number, j: number) {
 	;[arr[i], arr[j]] = [arr[j], arr[i]]
@@ -602,6 +604,49 @@ function rainbowSort(arr: number[]) {
 const result = rainbowSort(['a', 'b', 'c', 'c', 'b', 'b', 'a'])
 console.log(result)
 ```
+
+>java：
+
+```java
+   /**
+     * 条件一：i = 0 ，i 的左侧(不包含 i) 是全是 a
+     * 条件二：j = 0 ，j 为当前 index [i,j)全是 b
+     * 条件三：(k = n - 1]， k 的右侧全是 c
+     * [j-k]为未知探索区域
+     */
+   public static void sort(char[] arr) {
+        if (arr == null || arr.length <= 1) {
+            return;
+        }
+        int i = 0, j = 0, k = arr.length - 1;
+        while (j <= k) { //探索未知区域
+            if (arr[j] == 'a') {
+                swap(arr, i, j); //不满足条件二和i进行交换
+                i++; //i指针后移，满足条件
+                j++; //j++,继续探索未知区域
+            } else if (arr[j] == 'b') {
+                j++;//满足条件，继续探索未知区域
+            } else if (arr[j] == 'c') {
+                swap(arr, j, k);//不满足条件三和k交换
+                k--;//k--,继续探索未知区域
+            }
+        }
+    }
+
+    public static void swap(char[] arr, int a, int b) {
+        char temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+//call
+char[] arr = {'b', 'b', 'c', 'c', 'a', 'b', 'a'};
+sort(arr);
+System.out.println(Arrays.toString(arr));
+//output
+[a, a, b, b, b, c, c]
+```
+
+
 
 ## <a name="chapter-four" id="chapter-four"></a>四 recursion I
 
@@ -687,7 +732,10 @@ function a_pow_b(a: number, b: number) {
 
 > [返回目录](#chapter-one)
 
-> 使用左闭右闭区间法 [l, r]
+>动画演示，例：寻找目标元素73
+![BinarySearch.gif](https://i.loli.net/2020/11/22/Jm8n15Cf9MPwY3s.gif)
+
+> javaScript 使用左闭右闭区间法 [l, r]：
 
 ```typescript
 const binarySearch = (arr: number[], target: number) => {
@@ -709,6 +757,33 @@ const binarySearch = (arr: number[], target: number) => {
 const index = binarySearch([1, 2, 3, 4, 5, 6], 4)
 console.log(index)
 ```
+
+> java：
+
+```java
+   public static int binary_search(int[] arr, int target) {
+        int low = 0, height = arr.length - 1, mid;
+        while (low <= height) {
+            mid = (low + height) / 2; //取mid
+            if (arr[mid] == target) { //mid为目标元素直接返回
+                return mid;
+            } else if (arr[mid] > target) { //目标元素小于mid,查找mid前半部分
+                height = mid - 1;
+            } else { //查找mid后半部分
+                low = mid + 1;
+            }
+        }
+        return -1;
+    }
+//call
+int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+int i = binary_search(arr, 4);
+System.out.println(i);
+//output
+3
+```
+
+
 
 > 时间复杂度: O(logn)
 
