@@ -720,7 +720,7 @@ const binarySearchLeft = (arr: number[], target: number) => {
 	while (left < right - 1) {
 		let mid = (left + (right - left) / 2) | 0
 		if (arr[mid] > target) {
-			right = mid // right=mid–1; right已经不是目标元素了，所以移位也会影响最终结果
+			right = mid // right=mid–1; right已经不是目标元素了，所以移位也不会影响最终结果
 		} else if (arr[mid] < target) {
 			left = mid //同上
 		} else {
@@ -731,7 +731,7 @@ const binarySearchLeft = (arr: number[], target: number) => {
 	// 因为是要找最左边的target 所以先检查左边界
 	if (arr[left] === target) {
 		return left
-	} else {
+	} else if (arr[right] === target) {
 		return right
 	}
 	return -1 // 如果左右都不相等，说明该元素不存在
@@ -768,7 +768,7 @@ const binarySearchRight = (arr: number[], target: number) => {
 	// 因为是要找最右边的target 所以先检查右边界
 	if (arr[right] === target) {
 		return right
-	} else {
+	} else if (arr[left] === target) {
 		return left
 	}
 	return -1
