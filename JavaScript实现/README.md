@@ -2,39 +2,36 @@
 
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
-| 目录 |
-| ---- |
-
-| [一 目录]
-(#chapter-two-three) |
-| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 排序算法](#chapter-three) |
-| &emsp;[3.1 选择排序](#chapter-three-one) |
-| &emsp;[3.2 归并排序](#chapter-three-two) |
-| &emsp;[3.3 快速排序](#chapter-three-three) |
-| &emsp;[3.4 RainbowSort](#chapter-three-four) |
-| <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 recursion I](#chapter-four) |
-| &emsp;[4.1 斐波那契数列](#chapter-four-one) |
-| &emsp;[4.2 a 的 b 次方(基础版)](#chapter-four-two) |
-| <a name="catalog-chapter-five" id="catalog-chapter-five"></a>[五 二分查找法](#chapter-five) |
-| &emsp;[5.1 寻找目标数字在排序数组中的索引](#chapter-five-one) |
-| &emsp;[5.2 二维数组里是否存在某个数字](#chapter-five-two) |
-| &emsp;[5.3 寻找最接近 target 的值的索引](#chapter-five-three) |
-| &emsp;[5.4 寻找最左边的 target 的值的索引](#chapter-five-four) |
-| &emsp;[5.5 寻找最右边的 target 值的索引](#chapter-five-five) |
-| &emsp;[5.6 寻找最接近 target 的 7 个数字](#chapter-five-six) |
-| <a name="catalog-chapter-six" id="catalog-chapter-six"></a>[六 Stack & Queue](#chapter-six) |
-| &emsp;[6.1 用两个 stack 实现一个 Queue](#chapter-six-one) |
-| &emsp;[6.2 实现最小栈](#chapter-six-two) |
-| <a name="catalog-chapter-seven" id="catalog-chapter-seven"></a>[七 链表](#chapter-seven) |
-| &emsp;[7.1 反转链表](#chapter-seven-one) |
+| 目录                                                                                          |
+| --------------------------------------------------------------------------------------------- |
+| <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[一. 排序算法](#chapter-three) |
+| &emsp;[1.选择排序](#chapter-three-one)                                                        |
+| &emsp;[2.归并排序](#chapter-three-two)                                                        |
+| &emsp;[3.快速排序](#chapter-three-three)                                                      |
+| &emsp;[4.RainbowSort](#chapter-three-four)                                                    |
+| <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[二. recursion I](#chapter-four) |
+| &emsp;[1.斐波那契数列](#chapter-four-one)                                                     |
+| &emsp;[2.a 的 b 次方(基础版)](#chapter-four-two)                                              |
+| <a name="catalog-chapter-five" id="catalog-chapter-five"></a>[三. 二分查找法](#chapter-five)  |
+| &emsp;[1.寻找目标数字在排序数组中的索引](#chapter-five-one)                                   |
+| &emsp;[2.二维数组里是否存在某个数字](#chapter-five-two)                                       |
+| &emsp;[3.寻找最接近 target 的值的索引](#chapter-five-three)                                   |
+| &emsp;[4.寻找最左边的 target 的值的索引](#chapter-five-four)                                  |
+| &emsp;[5.寻找最右边的 target 值的索引](#chapter-five-five)                                    |
+| &emsp;[6.寻找最接近 target 的 7 个数字](#chapter-five-six)                                    |
+| <a name="catalog-chapter-six" id="catalog-chapter-six"></a>[四. Stack & Queue](#chapter-six)  |
+| &emsp;[1.用两个 stack 实现一个 Queue](#chapter-six-one)                                       |
+| &emsp;[2.实现最小栈](#chapter-six-two)                                                        |
+| <a name="catalog-chapter-seven" id="catalog-chapter-seven"></a>[五. 链表](#chapter-seven)     |
+| &emsp;[1.反转链表](#chapter-seven-one)                                                        |
 
 <!-- 目录结束 -->
 
-## <a name="chapter-three" id="chapter-three"></a>三 排序算法
+## <a name="chapter-three" id="chapter-three"></a>一. 排序算法
 
 > [返回目录](#chapter-one)
 
-### <a name="chapter-three-one" id="chapter-three-one"></a>3.1 选择排序
+### <a name="chapter-three-one" id="chapter-three-one"></a>1.选择排序
 
 > [返回目录](#chapter-one)
 
@@ -65,7 +62,7 @@ selectSort([2, 1, 4, 5])
 
 ![selectionSort](https://i.loli.net/2020/11/10/jhSivbCYBuT6Rna.gif)
 
-### <a name="chapter-three-two" id="chapter-three-two"></a>3.2 归并排序
+### <a name="chapter-three-two" id="chapter-three-two"></a>2. 归并排序
 
 ![mergeSort1](https://i.ibb.co/JBytq39/php-At0-Xe-F.gif)
 
@@ -114,7 +111,7 @@ mergeSort(arr)
 
 > 空间复杂度: 等比数列：n/2 + n/4 + n/8 + 1 = O(n)
 
-### <a name="chapter-three-three" id="chapter-three-three"></a>3.3 快速排序
+### <a name="chapter-three-three" id="chapter-three-three"></a>3. 快速排序
 
 > js 实现思路： 是取第一个元素（或者最后一个元素）作为分界点，把整个数组分成左右两侧，左边的元素小于或者等于分界点元素，而右边的元素大于分界点元素，然后把分界点移到中间位置，对左右子数组分别进行递归，最后就能得到一个排序完成的数组。当子数组只有一个或者没有元素的时候就结束这个递归过程。其中最重要的是将整个数组根据分界点元素划分成左右两侧的逻辑
 >
@@ -178,7 +175,7 @@ const result = quickSort([1, 2, 8, 3, 4, 9])
 console.log(result)
 ```
 
-### <a name="chapter-three-four" id="chapter-three-four"></a>3.4 RainbowSort
+### <a name="chapter-three-four" id="chapter-three-four"></a>4. RainbowSort
 
 > [返回目录](#chapter-one)
 
@@ -225,7 +222,7 @@ const result = rainbowSort(['a', 'b', 'c', 'c', 'b', 'b', 'a'])
 console.log(result)
 ```
 
-## <a name="chapter-four" id="chapter-four"></a>四 recursion I
+## <a name="chapter-four" id="chapter-four"></a>二. recursion I
 
 > [返回目录](#chapter-one)
 
@@ -245,7 +242,7 @@ console.log(result)
 
 > 2.recursive rule: 用同样的规则处理更小号的问题
 
-### <a name="chapter-four-one" id="chapter-four-one"></a>4.1 斐波那契数列
+### <a name="chapter-four-one" id="chapter-four-one"></a>1. 斐波那契数列
 
 > [返回目录](#chapter-one)
 
@@ -272,7 +269,7 @@ function fibo(n) {
 > 例如 fibo(n - 1) 调用前会记录 n 的值
 > 所以计算 n-2 时才会知道 n 是几
 
-### <a name="chapter-four-two" id="chapter-four-two"></a>4.2 a 的 b 次方(基础版)
+### <a name="chapter-four-two" id="chapter-four-two"></a>2. a 的 b 次方(基础版)
 
 > [返回目录](#chapter-one)
 
@@ -301,11 +298,11 @@ function a_pow_b(a: number, b: number) {
 
 > 空间复杂度： O(logb)
 
-## <a name="chapter-five" id="chapter-five"></a>五 二分查找法
+## <a name="chapter-five" id="chapter-five"></a>三. 二分查找法
 
 > [返回目录](#chapter-one)
 
-### <a name="chapter-five-one" id="chapter-five-one"></a>5.1 寻找目标数字在排序数组中的索引
+### <a name="chapter-five-one" id="chapter-five-one"></a>1. 寻找目标数字在排序数组中的索引
 
 > [返回目录](#chapter-one)
 
@@ -339,7 +336,7 @@ console.log(index)
 
 > 空间复杂度: O(1)
 
-### <a name="chapter-five-two" id="chapter-five-two"></a>5.2 二维数组里是否存在某个数字
+### <a name="chapter-five-two" id="chapter-five-two"></a>2. 二维数组里是否存在某个数字
 
 > [返回目录](#chapter-one)
 
@@ -407,7 +404,7 @@ const index = findMatrix(
 console.log(index)
 ```
 
-### <a name="chapter-five-three" id="chapter-five-three"></a>5.3 寻找最接近 target 的值的索引
+### <a name="chapter-five-three" id="chapter-five-three"></a>3. 寻找最接近 target 的值的索引
 
 > [返回目录](#chapter-one)
 
@@ -443,7 +440,7 @@ const number = binarySearchCloset([1, 3, 4, 7, 9], 5)
 console.log(number)
 ```
 
-### <a name="chapter-five-four" id="chapter-five-four"></a>5.4 寻找最左边的 target 的值的索引
+### <a name="chapter-five-four" id="chapter-five-four"></a>4. 寻找最左边的 target 的值的索引
 
 > [返回目录](#chapter-one)
 
@@ -478,7 +475,7 @@ const number = binarySearchLeft([1, 4, 5, 5, 5, 7, 9], 5)
 console.log(number)
 ```
 
-### <a name="chapter-five-five" id="chapter-five-five"></a>5.5 寻找最右边的 target 值的索引
+### <a name="chapter-five-five" id="chapter-five-five"></a>5. 寻找最右边的 target 值的索引
 
 > [返回目录](#chapter-one)
 
@@ -517,7 +514,7 @@ console.log(number)
 
 > [返回目录](#chapter-one)
 
-### <a name="chapter-five-six" id="chapter-five-six"></a>5.6 寻找最接近 target 的 7 个数字
+### <a name="chapter-five-six" id="chapter-five-six"></a>6. 寻找最接近 target 的 7 个数字
 
 > [返回目录](#chapter-one)
 
@@ -582,11 +579,11 @@ console.log(result)
 
 > 时间复杂度: O(logn + k)
 
-## <a name="chapter-six" id="chapter-six"></a>六 Stack & Queue
+## <a name="chapter-six" id="chapter-six"></a>四. Stack & Queue
 
 > [返回目录](#chapter-one)
 
-### <a name="chapter-six-one" id="chapter-six-one"></a>6.1 用两个 stack 实现一个 Queue
+### <a name="chapter-six-one" id="chapter-six-one"></a>1. 用两个 stack 实现一个 Queue
 
 > [返回目录](#chapter-one)
 
@@ -677,7 +674,7 @@ console.log(queue.isEmpty()) //false
 console.log(queue.poll()) //3
 ```
 
-### <a name="chapter-six-two" id="chapter-six-two"></a>6.2 实现最小栈
+### <a name="chapter-six-two" id="chapter-six-two"></a>2. 实现最小栈
 
 > [返回目录](#chapter-one)
 
@@ -742,7 +739,7 @@ MinStack.prototype.getMin = function () {
 }
 ```
 
-## <a name="chapter-seven" id="chapter-seven"></a>七 链表
+## <a name="chapter-seven" id="chapter-seven"></a>五. 链表
 
 > [返回目录](#chapter-one)
 
@@ -754,6 +751,6 @@ MinStack.prototype.getMin = function () {
 
 > 单链表实现(不带头节点):
 
-### <a name="chapter-seven-one" id="chapter-seven-one"></a>7.1 反转链表
+### <a name="chapter-seven-one" id="chapter-seven-one"></a>1. 反转链表
 
 > [返回目录](#chapter-one)
