@@ -1,66 +1,34 @@
 <!-- 目录开始 -->
 
-### 码云地址: https://gitee.com/lmresp/Algorithm (国内快速访问)
-
 ## <a name="chapter-one" id="chapter-one"></a>一 目录
 
-| 目录                                                                                         |
-| -------------------------------------------------------------------------------------------- |
-| [一 目录](#chapter-one)                                                                      |
-| <a name="catalog-chapter-two" id="catalog-chapter-two"></a>[二 前言](#chapter-two)           |
-| &emsp;[2.1 语言说明](#chapter-two-one)                                                       |
-| &emsp;[2.2 学习攻略](#chapter-two-two)                                                       |
-| &emsp;[2.3 关于 issue](#chapter-two-three)                                                   |
+| 目录 |
+| ---- |
+
+| [一 目录]
+(#chapter-two-three) |
 | <a name="catalog-chapter-three" id="catalog-chapter-three"></a>[三 排序算法](#chapter-three) |
-| &emsp;[3.1 选择排序](#chapter-three-one)                                                     |
-| &emsp;[3.2 归并排序](#chapter-three-two)                                                     |
-| &emsp;[3.3 快速排序](#chapter-three-three)                                                   |
-| &emsp;[3.4 RainbowSort](#chapter-three-four)                                                 |
+| &emsp;[3.1 选择排序](#chapter-three-one) |
+| &emsp;[3.2 归并排序](#chapter-three-two) |
+| &emsp;[3.3 快速排序](#chapter-three-three) |
+| &emsp;[3.4 RainbowSort](#chapter-three-four) |
 | <a name="catalog-chapter-four" id="catalog-chapter-four"></a>[四 recursion I](#chapter-four) |
-| &emsp;[4.1 斐波那契数列](#chapter-four-one)                                                  |
-| &emsp;[4.2 a 的 b 次方(基础版)](#chapter-four-two)                                           |
-| <a name="catalog-chapter-five" id="catalog-chapter-five"></a>[五 二分查找法](#chapter-five)  |
-| &emsp;[5.1 寻找目标数字在排序数组中的索引](#chapter-five-one)                                |
-| &emsp;[5.2 二维数组里是否存在某个数字](#chapter-five-two)                                    |
-| &emsp;[5.3 寻找最接近 target 的值的索引](#chapter-five-three)                                |
-| &emsp;[5.4 寻找最左边的 target 的值的索引](#chapter-five-four)                               |
-| &emsp;[5.5 寻找最右边的 target 值的索引](#chapter-five-five)                                 |
-| &emsp;[5.6 寻找最接近 target 的 7 个数字](#chapter-five-six)                                 |
-| <a name="catalog-chapter-six" id="catalog-chapter-six"></a>[六 Stack & Queue](#chapter-six)  |
-| &emsp;[6.1 用两个 stack 实现一个 Queue](#chapter-six-one)                                    |
-| &emsp;[6.2 实现最小栈](#chapter-six-two)                                                     |
-| <a name="catalog-chapter-seven" id="catalog-chapter-seven"></a>[七 链表](#chapter-seven)     |
-| &emsp;[7.1 反转链表](#chapter-seven-one)                                                     |
+| &emsp;[4.1 斐波那契数列](#chapter-four-one) |
+| &emsp;[4.2 a 的 b 次方(基础版)](#chapter-four-two) |
+| <a name="catalog-chapter-five" id="catalog-chapter-five"></a>[五 二分查找法](#chapter-five) |
+| &emsp;[5.1 寻找目标数字在排序数组中的索引](#chapter-five-one) |
+| &emsp;[5.2 二维数组里是否存在某个数字](#chapter-five-two) |
+| &emsp;[5.3 寻找最接近 target 的值的索引](#chapter-five-three) |
+| &emsp;[5.4 寻找最左边的 target 的值的索引](#chapter-five-four) |
+| &emsp;[5.5 寻找最右边的 target 值的索引](#chapter-five-five) |
+| &emsp;[5.6 寻找最接近 target 的 7 个数字](#chapter-five-six) |
+| <a name="catalog-chapter-six" id="catalog-chapter-six"></a>[六 Stack & Queue](#chapter-six) |
+| &emsp;[6.1 用两个 stack 实现一个 Queue](#chapter-six-one) |
+| &emsp;[6.2 实现最小栈](#chapter-six-two) |
+| <a name="catalog-chapter-seven" id="catalog-chapter-seven"></a>[七 链表](#chapter-seven) |
+| &emsp;[7.1 反转链表](#chapter-seven-one) |
 
 <!-- 目录结束 -->
-
-## <a name="chapter-two" id="chapter-two"></a>二 前言
-
-> [返回目录](#chapter-one)
-
-很多小伙伴对数据结构与算法有说不出来的畏惧感, 每当谈起时都闻声色变~, 其实一般就我们探讨的数据结构算法不需要高人一等的智商, 只是需要辅以一些小 trick 和一(亿)点点的练习就可以进步..., 故本人开了本仓库, 后面会持续更新 README.md, 和大家一起学习这个带有神秘面纱的"新事物"
-
-### <a name="chapter-two-one" id="chapter-two-one"></a>2.1 语言说明
-
-> [返回目录](#chapter-one)
-
-1. 本项目均采用 javascript + java 进行代码编写
-
-### <a name="chapter-two-two" id="chapter-two-two"></a>2.2 学习攻略
-
-> [返回目录](#chapter-one)
-
-1. 本项目代码中有注释的地方都是需要好好理解的部分(也是很多同鞋学习了很久都难以掌握的一些 corner case...), 只要结合注释认真理解后相信你会豁然开朗
-
-2. 性质和思路需要先看, 看看是如何思考的~!
-
-3. 最后再辅以代码和执行图 **相对较难理解的将会有图片辅助理解** 进行理解 + 练习(coding)
-
-### <a name="chapter-two-three" id="chapter-two-three"></a>2.3 关于 issue
-
-> [返回目录](#chapter-one)
-
-对代码的实现有更优解(时间复杂度或空间复杂度更优) 可以根据分类 + 题名提交 issue 共同探讨
 
 ## <a name="chapter-three" id="chapter-three"></a>三 排序算法
 
